@@ -1,0 +1,40 @@
+.button {
+  transition: all 0.2s ease;
+  text-transform: none;
+
+  font-weight: 500;
+  font-style: normal;
+  line-height: 24px;
+  text-decoration-style: none;
+}
+
+.button:active {
+  transform: scale(0.92);
+}
+
+
+.outlined {
+  color: var(--accent-strong);
+  border: 1.5px solid var(--accent-strong);
+  border-color: var(--accent-strong);
+  border-radius: 57px;
+}
+
+.outlined:hover {
+  color: var(--accent-weak);
+  border: 1.5px solid var(--accent-weak);
+}
+
+.text {
+  color: var(--accent-strong);
+}
+
+.text:hover {
+  color: var(--accent-strong-down);
+}
+
+.contained {
+  color: var(--faint-weak-down);
+  border-radius: 57px;
+  background-color: var(--accent-strong);
+}

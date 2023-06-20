@@ -11,16 +11,13 @@
     "stylelint": "stylelint \"**/*.css\" --fix"
   },
   "lint-staged": {
-    "*.(js|jsx)": [
-      "npm run lint",
-      "git add"
-    ],
     "*.css": [
       "npm run stylelint",
       "git add"
     ]
   },
   "dependencies": {
+    "classnames": "^2.3.2",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.5",
     "next": "13.4.5",

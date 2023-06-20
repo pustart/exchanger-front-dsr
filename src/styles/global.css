@@ -1,0 +1,62 @@
+@import url("normalize");
+
+:root {
+  --base-strong: #000;
+  --base-strong-down: #00171F;
+  --base-weak: #FFF;
+  --faint-strong-up: #242B33;
+  --faint-strong: #667479;
+  --faint-strong-down: #99A2A5;
+  --faint-weak-up: #CCD1D2;
+  --faint-weak: #EBEEEF;
+  --faint-weak-down: #FDFDFD;
+  --accent-strong: #003459;
+  --accent-strong-up: #002A48;
+  --accent-strong-down: #00528C;
+  --accent-weak: #0078CD;
+  --complement-strong: #F7DBA7;
+  --complement-strong-up: #F7DBA7;
+  --complement-weak: #FCEED5;
+  --complement-weak-up: #F1D092;
+  --critic-strong: #FF564F;
+  --warning-strong: #FF912C;
+  --success-strong: #34C759;
+}
+
+
+html, body, main {
+  overflow-x: hidden;
+
+  box-sizing: border-box;
+  scrollbar-color: var(--faint-strong) var(--faint-weak-up);
+
+  font-family: var(--font-roboto);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+
+  font-family: inherit;
+}
+
+a {
+  text-decoration: none;
+
+  color: inherit;
+}
+
+::-webkit-scrollbar {
+  width: 0.75vmin;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 1.75rem;
+  background: var(--faint-weak-up);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 1.75rem;
+  background: var(--faint-strong);
+}

@@ -21,16 +21,27 @@
   --critic-strong: #FF564F;
   --warning-strong: #FF912C;
   --success-strong: #34C759;
+  --content-width-pc: 1180px;
+  --content-width-mobile: 382px;
+  font-size: 16px;
 }
 
 
 html, body, main {
+  display: flex;
   overflow-x: hidden;
+  flex-direction: column;
 
   box-sizing: border-box;
-  scrollbar-color: var(--faint-strong) var(--faint-weak-up);
+  width: 100vw;
+  height: 2000px;
 
   font-family: var(--font-roboto);
+  scrollbar-color: var(--faint-strong) var(--faint-weak-up);
+}
+
+main {
+  padding-top: 6.24rem;
 }
 
 *,

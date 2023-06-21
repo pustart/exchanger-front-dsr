@@ -7,6 +7,8 @@
   text-decoration: none;
 
   color: inherit;
+
+  line-height: inherit;
 }
 
 .link::after {
@@ -29,8 +31,4 @@
 .link:hover::after {
   transform: scaleX(1);
   transform-origin: bottom left;
-}
-
-.link:active {
-  transform: scale(0.97);
 }

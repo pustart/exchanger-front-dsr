@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from "../src/components/elements/Button/Button"
-
+import Link from '../src/components/elements/Link/Link';
 export default function Home() {
   return (
     <>
@@ -16,6 +16,7 @@ export default function Home() {
       <Button>
         Кликни на меня
       </Button>
+      <Link>О нас</Link>
     </>
   );
 }

@@ -1,9 +1,11 @@
 import React from 'react';
 import Button from "../src/components/elements/Button/Button"
 import Link from '../src/components/elements/Link/Link';
+import Header from '../src/components/modules/Header/Header';
 export default function Home() {
   return (
     <>
+    <Header></Header>
     <h1>
       Привет мир!
     </h1>

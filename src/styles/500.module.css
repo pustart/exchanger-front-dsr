@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 100%;
+  max-width: var(--content-width-pc);
+  height: 100%;
+  margin-bottom: 4rem;
+  gap: 1rem;
+  margin-inline: auto;
+}
+
+.img {
+  width: 33.125rem;
+  height: 29.375rem;
+}

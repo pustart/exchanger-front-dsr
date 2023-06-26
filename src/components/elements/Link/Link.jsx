@@ -1,16 +1,16 @@
 import React from 'react';
 import styles from './Link.module.css';
 import cn from "classnames";
+import NextLink from 'next/link';
 
 function Link({ className, children, ...props }) {
   return (
-    <a
+    <NextLink
       tabIndex="0"
       className={cn(styles.link, className)}
-      {...props}
-    >
-      {children}
-    </a>
+      {...props}>
+        {children}
+    </NextLink>
   );
 }
 

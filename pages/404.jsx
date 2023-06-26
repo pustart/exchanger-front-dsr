@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Button from "../src/components/elements/Button/Button";
 import styles from "../src/styles/404.module.css";
-import withLayout from '@/src/layouts/layout';
+import withLayout from '../src/layouts/Layout';
 import { useRouter } from 'next/router';
 
 export function Error404() {

@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import styles from "../src/styles/500.module.css";
-import withLayout from '@/src/layouts/layout';
+import withLayout from '../src/layouts/Layout';
 
 export function Error500() {
   return (

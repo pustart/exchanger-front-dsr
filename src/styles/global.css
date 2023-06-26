@@ -15,9 +15,10 @@
   --accent-strong-down: #00528C;
   --accent-weak: #0078CD;
   --complement-strong: #F7DBA7;
-  --complement-strong-up: #F7DBA7;
+  --complement-strong-up: #EEC77E;
   --complement-weak: #FCEED5;
   --complement-weak-up: #F1D092;
+  --complement-background: linear-gradient(134deg, #FCEED5 6.17%, #FCEED5 75.14%, #FFE7BA 100%);
   --critic-strong: #FF564F;
   --warning-strong: #FF912C;
   --success-strong: #34C759;
@@ -26,22 +27,25 @@
   font-size: 16px;
 }
 
-
 html, body, main {
+  position: relative;
+
   display: flex;
   overflow-x: hidden;
   flex-direction: column;
 
   box-sizing: border-box;
   width: 100vw;
-  height: 2000px;
+  min-height: 100vh;
 
   font-family: var(--font-roboto);
+  font-weight: 500;
   scrollbar-color: var(--faint-strong) var(--faint-weak-up);
 }
 
-main {
-  padding-top: 6.24rem;
+.default {
+  margin-top: 6.24rem;
+  margin-bottom: 14rem;
 }
 
 *,

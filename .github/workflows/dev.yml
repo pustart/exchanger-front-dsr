@@ -12,7 +12,11 @@ jobs:
         run: npm pkg delete scripts.prepare --force
       - name: Install deps
         run: npm ci --force
+      - name: Lint styles
+        run: npm run stylelint
       - name: Lint
+        run: npm run lint:fix
+      - name: Lint check
         run: npm run lint
   deploy:
     name: deploy

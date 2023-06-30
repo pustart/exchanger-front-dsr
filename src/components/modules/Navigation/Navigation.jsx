@@ -8,7 +8,6 @@ function Navigation({ className, userRole = "default", logo = false, ...props })
   let sections = [
     { title: "Главная", path: "/" },
     { title: "Обмен", path: "/exchange" },
-    { title: "Контакты", path: "/contacts" },
   ];
 
   if (userRole === "admin") {

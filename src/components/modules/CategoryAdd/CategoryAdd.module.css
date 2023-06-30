@@ -9,7 +9,7 @@
   transition: all 0.2s ease;
 
   border: 2px dashed var(--accent-strong);
-  border-radius: 12px;
+  border-radius: var(--squared);
 }
 
 .add-card:hover {

@@ -15,7 +15,7 @@ function Category({ title = "Категория", amount = 0, className }) {
         <div className={styles["amount-info"]}>Количество вещей в категории: {amount}</div>
       </div>
       <div>
-        <Button appearance="delete" round="square" endIcon={<DeleteIcon />}>
+        <Button tabIndex="0" appearance="delete" round="square" endIcon={<DeleteIcon />}>
           Удалить
         </Button>
       </div>

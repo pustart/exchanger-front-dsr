@@ -8,7 +8,7 @@ const StyledButton = styled(MuiButton)(({ appearance, round }) => ({
   fontSize: "1rem",
   lineHeight: "1.5rem",
   fontFamily: "var(--font-roboto)",
-  borderRadius: round === "rounded" ? "57px" : "12px",
+  borderRadius: round === "rounded" ? "var(--rounded)" : "var(--squared)",
 
   "&:active": {
     transform: "scale(0.92)",

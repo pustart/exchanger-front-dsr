@@ -8,8 +8,7 @@
 
   width: 100vw;
   height: 6.24rem;
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
+  padding-inline: 0.5rem;
 
   background-color: rgb(255 255 255 / 90%);
 }

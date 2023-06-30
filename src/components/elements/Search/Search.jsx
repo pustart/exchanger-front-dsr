@@ -4,7 +4,7 @@ import InputBase from "@mui/material/InputBase";
 
 const StyledSearch = styled("form")(({ theme }) => ({
   position: "relative",
-  borderRadius: "57px",
+  borderRadius: "var(--rounded)",
   height: "100%",
   marginLeft: 0,
   width: "100%",
@@ -27,7 +27,7 @@ const SearchIconWrapper = styled("div")(() => ({
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
-    borderRadius: "57px",
+    borderRadius: "var(--rounded)",
     border: "1.5px solid var(--faint-strong)",
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon

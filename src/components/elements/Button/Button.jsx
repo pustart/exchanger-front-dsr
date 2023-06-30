@@ -1,10 +1,10 @@
-import React from 'react';
-import MuiButton from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
+import React from "react";
+import MuiButton from "@mui/material/Button";
+import { styled } from "@mui/material/styles";
 
 const StyledButton = styled(MuiButton)(({ appearance, round }) => ({
   transition: "all 0.2s ease",
-  textTransform: 'none',
+  textTransform: "none",
   fontSize: "1rem",
   lineHeight: "1.5rem",
   fontFamily: "var(--font-roboto)",
@@ -43,7 +43,7 @@ const StyledButton = styled(MuiButton)(({ appearance, round }) => ({
     borderColor: "var(--critic-strong)",
     "&:hover": {
       color: "var(--base-weak)",
-      backgroundColor: "var(--critic-strong)"
+      backgroundColor: "var(--critic-strong)",
     },
   }),
 }));

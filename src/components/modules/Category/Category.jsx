@@ -1,9 +1,9 @@
 import React from "react";
+import DeleteIcon from "@mui/icons-material/Delete";
+import cn from "classnames";
 import styles from "./Category.module.css";
 import Htag from "../../elements/Htag/Htag";
 import Button from "../../elements/Button/Button";
-import DeleteIcon from "@mui/icons-material/Delete";
-import cn from "classnames";
 
 function Category({ title = "Категория", amount = 0, className }) {
   return (

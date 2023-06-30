@@ -12,10 +12,6 @@
     "stylelint": "stylelint \"**/*.css\" --fix"
   },
   "lint-staged": {
-    "*.(js|jsx)": [
-      "npm run lint:fix",
-      "git add"
-    ],
     "*.css": [
       "npm run stylelint",
       "git add"

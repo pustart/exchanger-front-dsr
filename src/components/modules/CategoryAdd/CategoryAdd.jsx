@@ -1,15 +1,14 @@
-import React from 'react';
-import styles from './CategoryAdd.module.css';
+import React from "react";
 import cn from "classnames";
-import Icon from '@mui/material/Icon';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import NextLink from 'next/link';
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import NextLink from "next/link";
+import styles from "./CategoryAdd.module.css";
 
-function CategoryAdd({ className, children }) {
+function CategoryAdd({ className }) {
   return (
     <NextLink href="#" className={cn(styles["add-card"], className)}>
       <p>Добавить категорию</p>
-      <AddCircleOutlineIcon></AddCircleOutlineIcon>
+      <AddCircleOutlineIcon />
     </NextLink>
   );
 }

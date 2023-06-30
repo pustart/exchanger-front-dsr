@@ -1,0 +1,7 @@
+.input {
+  width: 100%;
+
+  border: 1.5px solid var(--faint-strong);
+
+  border-radius: var(--squared);
+}

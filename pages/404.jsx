@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import Button from "../src/components/elements/Button/Button";
 import styles from "../src/styles/404.module.css";
-import withLayout from '../src/layouts/Layout';
-import { useRouter } from 'next/router';
+import withLayout from "../src/layouts/Layout";
 
 export function Error404() {
   const router = useRouter();
@@ -21,9 +21,12 @@ export function Error404() {
         alt="Error 404."
         className={styles.img}
       />
-      <Button appearance="outlined" onClick={() => {
-        goToHome();
-      }}>
+      <Button
+        appearance="outlined"
+        onClick={() => {
+          goToHome();
+        }}
+      >
         Вернуться на главную
       </Button>
     </div>

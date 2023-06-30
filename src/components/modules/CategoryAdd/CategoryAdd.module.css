@@ -1,0 +1,24 @@
+.add-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 6rem;
+  margin-bottom: 0.5rem;
+
+  transition: all 0.2s ease;
+
+  border: 2px dashed var(--accent-strong);
+  border-radius: 12px;
+}
+
+.add-card:hover {
+  cursor: pointer;
+
+  color: var(--base-weak);
+  background-color: var(--accent-strong);
+}
+
+.add-card:active {
+  transform: scale(0.96);
+}

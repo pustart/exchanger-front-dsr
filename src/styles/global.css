@@ -27,7 +27,9 @@
   font-size: 16px;
 }
 
-html, body, main {
+html,
+body,
+main {
   position: relative;
 
   display: flex;
@@ -38,14 +40,23 @@ html, body, main {
   width: 100vw;
   min-height: 100vh;
 
+  background-color: var(--base-weak);
+
   font-family: var(--font-roboto);
   font-weight: 500;
   scrollbar-color: var(--faint-strong) var(--faint-weak-up);
 }
 
 .default {
-  margin-top: 6.24rem;
-  margin-bottom: 14rem;
+  width: 100%;
+  max-width: var(--content-width-pc);
+  height: 100%;
+  margin-top: 6.74rem;
+  margin-bottom: 14.5rem;
+
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  margin-inline: auto;
 }
 
 *,

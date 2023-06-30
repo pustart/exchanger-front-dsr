@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import cn from "classnames";
 import styles from "./Htag.module.css";
 

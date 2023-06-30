@@ -1,8 +1,8 @@
-import React from 'react';
-import styles from './Navigation.module.css';
+import React from "react";
 import cn from "classnames";
-import Image from 'next/image';
-import Link from '../../elements/Link/Link';
+import Image from "next/image";
+import styles from "./Navigation.module.css";
+import Link from "../../elements/Link/Link";
 
 function Navigation({ className, userRole = "default", logo = false, ...props }) {
   let sections = [
@@ -21,30 +21,15 @@ function Navigation({ className, userRole = "default", logo = false, ...props })
 
   return (
     <nav className={cn(styles.navigation, className)} {...props}>
-      {
-        logo
-          ?
-          <Image
-            priority
-            src="/images/logo.svg"
-            width={115}
-            height={40}
-            alt="Exchanger"
-          />
-          :
-          null
-      }
+      {logo ? (
+        <Image priority src="/images/logo.svg" width={115} height={40} alt="Exchanger" />
+      ) : null}
       <ul className={styles.list}>
-        {
-          sections.map((section, index) => (
-            <li
-              key={index}
-              className={styles["list-item"]}
-            >
-              <Link href={section.path}>{section.title}</Link>
-            </li>
-          ))
-        }
+        {sections.map(section => (
+          <li key={section.title} className={styles["list-item"]}>
+            <Link href={section.path}>{section.title}</Link>
+          </li>
+        ))}
       </ul>
     </nav>
   );

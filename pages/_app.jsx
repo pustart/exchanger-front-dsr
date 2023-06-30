@@ -1,8 +1,8 @@
 import "../src/styles/global.css";
 import Head from "next/head";
 import React from "react";
-import { roboto } from '../src/fonts/fonts';
-import { StyledEngineProvider } from '@mui/material/styles';
+import { StyledEngineProvider } from "@mui/material/styles";
+import { roboto } from "../src/fonts/fonts";
 
 function MyApp({ Component, pageProps }) {
   return (

@@ -1,3 +1,29 @@
 {
-  "extends": "next/core-web-vitals"
+  "root": true,
+  "ignorePatterns": [
+    "next.config.js"
+  ],
+  "plugins": [
+    "react",
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": "warn",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-no-useless-fragment": "off",
+    "react/button-has-type": "warn",
+    "jsx-a11y/anchor-is-valid": "warn",
+    "import/no-named-as-default": "warn",
+    "indent": [
+      "warn",
+      2
+    ],
+    "semi": "warn"
+  },
+  "extends": [
+    "airbnb",
+    "eslint:recommended",
+    "next",
+    "prettier"
+  ]
 }

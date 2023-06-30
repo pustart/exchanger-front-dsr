@@ -2,7 +2,7 @@ import React from "react";
 import cn from "classnames";
 import styles from "./Footer.module.css";
 import Image from 'next/image';
-import Navigation from '../../elements/Navigation/Navigation';
+import Navigation from '../Navigation/Navigation';
 import { PRIVACY_POLICY_LINK, SOCIALS } from '../../../../src/constants/links';
 
 function Footer({ visible, className, ...props }) {

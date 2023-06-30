@@ -9,6 +9,8 @@
 
   width: 100vw;
   height: 14rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
 
   border-radius: 40px 40px 0 0;
   background: var(--complement-background);

@@ -3,7 +3,7 @@ import cn from "classnames";
 import styles from "./Header.module.css";
 import Button from '../../elements/Button/Button';
 import { Avatar } from '@mui/material';
-import Navigation from '../../elements/Navigation/Navigation';
+import Navigation from '../Navigation/Navigation';
 import NextLink from "next/link";
 
 export function Header({ visible, className, userRole = "default", ...props }) {

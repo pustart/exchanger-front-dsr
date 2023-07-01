@@ -7,7 +7,8 @@ export function Error500() {
   return (
     <div className={styles.container}>
       <Image
-        src="/images/500-placeholder.png"
+        priority
+        src="/images/500-placeholder.webp"
         width={1100}
         height={830}
         alt="Error 500."

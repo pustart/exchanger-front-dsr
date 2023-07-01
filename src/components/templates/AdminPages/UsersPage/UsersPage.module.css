@@ -3,8 +3,13 @@
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
+}
 
-  height: 100%;
+.user-card-container {
+  display: grid;
 
-  background-color: tomato;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
 }

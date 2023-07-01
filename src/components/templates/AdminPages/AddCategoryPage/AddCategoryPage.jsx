@@ -41,10 +41,16 @@ function AddCategoryPage() {
           </div>
         </div>
         <div className={styles["form-actions"]}>
-          <Button round="square" appearance="outlined" type="button" onClick={() => router.back()}>
+          <Button
+            height="2.25rem"
+            round="square"
+            appearance="outlined"
+            type="button"
+            onClick={() => router.back()}
+          >
             Назад
           </Button>
-          <Button round="square" type="submit">
+          <Button height="2.25rem" round="square" type="submit">
             Добавить категорию
           </Button>
         </div>

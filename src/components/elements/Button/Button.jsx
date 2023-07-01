@@ -2,7 +2,9 @@ import React from "react";
 import MuiButton from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 
-const StyledButton = styled(MuiButton)(({ appearance, round }) => ({
+const StyledButton = styled(MuiButton)(({ appearance, round, width, height }) => ({
+  width: width ? `${width}` : "100%",
+  height: height ? `${height}` : "100%",
   transition: "all 0.2s ease",
   textTransform: "none",
   fontSize: "1rem",
@@ -48,13 +50,23 @@ const StyledButton = styled(MuiButton)(({ appearance, round }) => ({
   }),
 }));
 
-function Button({ appearance = "contained", round = "rounded", className, children, ...props }) {
+function Button({
+  appearance = "contained",
+  round = "rounded",
+  width,
+  height,
+  className,
+  children,
+  ...props
+}) {
   return (
     <StyledButton
       disableRipple
       variant={appearance}
       appearance={appearance}
       round={round}
+      width={width}
+      height={height}
       {...props}
     >
       {children}

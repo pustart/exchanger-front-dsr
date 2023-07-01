@@ -1,12 +1,13 @@
 import React from "react";
-import Header from "../components/modules/Header/Header";
-import Footer from "../components/modules/Footer/Footer";
+import Header from "../../components/modules/Header/Header";
+import Footer from "../../components/modules/Footer/Footer";
+import styles from "./DefaultLayout.module.css";
 
 function DefaultLayout({ children }) {
   return (
     <>
       <Header />
-      <div className="default">{children}</div>
+      <div className={styles.default}>{children}</div>
       <Footer />
     </>
   );

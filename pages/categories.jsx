@@ -1,5 +1,5 @@
 import React from "react";
-import withDefaultLayout from "../src/layouts/Layout";
+import withDefaultLayout from "../src/layouts/Default/DefaultLayout";
 import CategoriesPage from "../src/components/templates/AdminPages/CategoriesPage/CategoriesPage";
 
 function Categories() {

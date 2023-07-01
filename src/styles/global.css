@@ -49,18 +49,6 @@ main {
   scrollbar-color: var(--faint-strong) var(--faint-weak-up);
 }
 
-.default {
-  width: 100%;
-  max-width: var(--content-width-pc);
-  height: 100%;
-  min-height: 100%;
-  margin-top: 6.74rem;
-  margin-bottom: 14.5rem;
-
-  padding-inline: 0.5rem;
-  margin-inline: auto;
-}
-
 *,
 *::before,
 *::after {

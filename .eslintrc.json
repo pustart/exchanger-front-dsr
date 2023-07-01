@@ -13,7 +13,7 @@
     "react/jsx-no-useless-fragment": "off",
     "react/button-has-type": "warn",
     "jsx-a11y/anchor-is-valid": "warn",
-    "import/no-named-as-default": "warn",
+    "import/no-named-as-default": "off",
     "indent": [
       "warn",
       2

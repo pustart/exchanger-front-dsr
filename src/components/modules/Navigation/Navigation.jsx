@@ -12,7 +12,7 @@ function Navigation({ className, userRole = "default", logo = false, ...props })
 
   if (userRole === "admin") {
     sections = [
-      { title: "Главная", path: "/" },
+      { title: "Главная", path: "/admin" },
       { title: "Категории", path: "/categories" },
       { title: "Пользователи", path: "/users" },
     ];

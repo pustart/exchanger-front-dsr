@@ -1,7 +1,7 @@
 name: Dev pipeline
 on:
   push:
-    branches: [ "deploy/dev" ]
+    branches: [ "master" ]
 jobs:
   lint:
     runs-on: ubuntu-latest

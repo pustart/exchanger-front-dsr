@@ -1,21 +1,9 @@
 import React from "react";
-import Image from "next/image";
-import styles from "../src/styles/500.module.css";
-import withLayout from "../src/layouts/Layout";
+import withDefaultLayout from "../src/layouts/Layout";
+import Error500Template from "../src/components/templates/ErrorsPages/Error500/Error500";
 
 export function Error500() {
-  return (
-    <div className={styles.container}>
-      <Image
-        priority
-        src="/images/500-placeholder.webp"
-        width={1100}
-        height={830}
-        alt="Error 500."
-        className={styles.img}
-      />
-    </div>
-  );
+  return <Error500Template />;
 }
 
-export default withLayout(Error500);
+export default withDefaultLayout(Error500);

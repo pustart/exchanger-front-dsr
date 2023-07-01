@@ -15,7 +15,8 @@ export function Error404() {
   return (
     <div className={styles.container}>
       <Image
-        src="/images/404-placeholder.png"
+        priority
+        src="/images/404-placeholder.webp"
         width={1060}
         height={940}
         alt="Error 404."

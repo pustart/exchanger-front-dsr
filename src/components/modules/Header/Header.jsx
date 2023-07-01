@@ -13,7 +13,7 @@ export function Header({ visible, className, userRole = "default", ...props }) {
         <Navigation logo />
         <div className={styles["actions-wrapper"]}>
           <NextLink href="/profile">
-            <Avatar src="/images/default-profile.png" className={styles.avatar} />
+            <Avatar src="/images/default-profile.webp" className={styles.avatar} />
           </NextLink>
           {userRole === "admin" ? null : (
             <Button className={styles["add-btn"]} appearance="contained">

@@ -8,7 +8,7 @@ function CategoriesPage() {
     <>
       <CategoryAdd />
       {CATEGORIES.map(category => (
-        <Category key={category.title} title={category.title} amount={category.amount} />
+        <Category key={category.id} categoryInfo={category} />
       ))}
     </>
   );

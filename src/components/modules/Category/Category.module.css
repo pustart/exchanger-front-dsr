@@ -4,8 +4,8 @@
   justify-content: space-between;
 
   height: 6rem;
-  margin-bottom: 0.5rem;
-  padding: 0.5rem;
+  margin-bottom: 1.25rem;
+  padding: 0.75rem;
 
   border-radius: var(--squared);
 
@@ -24,6 +24,8 @@
 
 .title {
   margin: 0;
+
+  line-height: 1rem;;
 }
 
 .amount-info {

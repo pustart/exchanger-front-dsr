@@ -1,0 +1,19 @@
+.grid-container {
+  display: grid;
+
+  width: 100%;
+  height: 100vh;
+  margin-bottom: 0.5rem;
+
+  background-color: tomato;
+  grid-template-columns: 1fr 3fr;
+  gap: 1.25rem;
+}
+
+.sidebar {
+  background-color: plum;
+}
+
+.main {
+  background-color: wheat;
+}

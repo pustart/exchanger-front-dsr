@@ -1,6 +1,6 @@
 import React from "react";
-import UsersPage from "../src/components/templates/AdminPages/UsersPage/UsersPage";
 import withDefaultLayout from "../src/layouts/Default/DefaultLayout";
+import UsersPage from "../src/components/templates/AdminPages/UsersPage/UsersPage";
 
 function Users() {
   return <UsersPage />;

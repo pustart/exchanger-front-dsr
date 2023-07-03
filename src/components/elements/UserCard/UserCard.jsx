@@ -1,31 +1,32 @@
 import React from "react";
 import cn from "classnames";
-// import NextLink from "next/link";
 import Avatar from "@mui/material/Avatar";
 import DeleteIcon from "@mui/icons-material/Delete";
 import styles from "./UserCard.module.css";
-import Htag from "../../elements/Htag/Htag";
-import Button from "../../elements/Button/Button";
+import Htag from "../Htag/Htag";
+import Button from "../Button/Button";
 
-function UserCard({ className, id, birthday, sex, phone, email, countThings, ...props }) {
+function UserCard({ userInfo, className, ...props }) {
+  const { id, sex, name, surname, email, phone, birthday, photo, role, thingsCount } = userInfo;
+
   return (
     <article className={cn(styles["user-card-wrapper"], className)} {...props}>
       <div className={styles["info-container"]}>
         <Avatar
-          alt="Remy Sharp"
-          src="/images/default-profile.webp"
+          alt={[name, " ", surname]}
+          src={photo || "/images/default-profile.webp"}
           sx={{ width: 124, height: 124 }}
         />
         <div>
           <Htag className={styles.name} tag="h3" fontWeight="medium">
-            Артем Пустовалов
+            {[name, " ", surname]}
           </Htag>
           <ul className={styles.list}>
             <li className={styles["list-item"]}>Дата рождения: {birthday}</li>
             <li className={styles["list-item"]}>Пол: {sex}</li>
             <li className={styles["list-item"]}>Телефон: {phone}</li>
             <li className={styles["list-item"]}>e-mail: {email}</li>
-            <li className={styles["list-item"]}>Вещей размещено: {countThings}</li>
+            <li className={styles["list-item"]}>Вещей размещено: {thingsCount}</li>
           </ul>
         </div>
       </div>

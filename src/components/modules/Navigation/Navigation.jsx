@@ -3,16 +3,17 @@ import cn from "classnames";
 import Image from "next/image";
 import styles from "./Navigation.module.css";
 import Link from "../../elements/Link/Link";
+import ROLES from "../../../constants/roles";
 
-function Navigation({ className, userRole = "default", logo = false, ...props }) {
+function Navigation({ className, userRole = ROLES.USER, logo = false, ...props }) {
   let sections = [
     { title: "Главная", path: "/" },
     { title: "Обмен", path: "/exchange" },
   ];
 
-  if (userRole === "admin") {
+  if (userRole === ROLES.ADMIN) {
     sections = [
-      { title: "Главная", path: "/admin" },
+      { title: "Главная", path: "/things" },
       { title: "Категории", path: "/categories" },
       { title: "Пользователи", path: "/users" },
     ];

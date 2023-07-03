@@ -4,13 +4,14 @@ import Image from "next/image";
 import styles from "./Footer.module.css";
 import Navigation from "../Navigation/Navigation";
 import { PRIVACY_POLICY_LINK, SOCIALS } from "../../../constants/links";
+import ROLES from "../../../constants/roles";
 
-function Footer({ visible, className, ...props }) {
+function Footer({ visible, className, userRole = ROLES.ADMIN, ...props }) {
   return (
     <footer className={cn(styles.footer, className)} {...props}>
       <div className={styles["footer-container"]}>
         <div className={styles["nav-wrapper"]}>
-          <Navigation logo={false} />
+          <Navigation logo={false} userRole={userRole} />
           <ul className={styles["socials-list"]}>
             {SOCIALS.map(social => (
               <li key={social.path} className={styles["socials-list-item"]}>

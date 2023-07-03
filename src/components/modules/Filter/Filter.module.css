@@ -1,0 +1,35 @@
+.filter-container {
+  color: var(--accent-strong);
+}
+
+.main-title {
+  margin: 0 0 1rem;
+
+  color: var(--accent-strong);
+
+  font-size: 1.5rem;
+  line-height: 2.25rem;
+}
+
+.filter-titles {
+  margin: 0 0 1rem;
+
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.filter-block-wrapper {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+
+  color: var(--base-strong-down);
+  border-bottom: 1.5px solid var(--faint-weak);
+}
+
+.select {
+  width: 100%;
+  height: 2.75rem;
+  margin-bottom: 1rem;
+
+  border-radius: var(--squared);
+}

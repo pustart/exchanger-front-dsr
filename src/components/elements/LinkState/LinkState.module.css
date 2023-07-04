@@ -1,0 +1,11 @@
+.link {
+  color: inherit;
+}
+
+.link.active {
+  color: var(--accent-weak);
+}
+
+.link:active {
+  color: var(--accent-weak);
+}

@@ -103,7 +103,7 @@ function ProfileSettings({ className, ...props }) {
         <Input
           value={avatar}
           type="file"
-          accept="image/jpeg"
+          accept="image/jpeg, image/png"
           name="avatar"
           id="avatar"
           onChange={e => setAvatar(e.target.value)}

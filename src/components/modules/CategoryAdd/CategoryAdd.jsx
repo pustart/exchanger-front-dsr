@@ -6,7 +6,7 @@ import styles from "./CategoryAdd.module.css";
 
 function CategoryAdd({ className }) {
   return (
-    <NextLink href="/addcategory" className={cn(styles["add-card"], className)}>
+    <NextLink href="/categories/addcategory" className={cn(styles["add-card"], className)}>
       <p>Добавить категорию</p>
       <AddCircleOutlineIcon />
     </NextLink>

@@ -31,7 +31,7 @@ function ThingCard({ thing, userRole = ROLES.USER }) {
           className={styles.img}
         />
         <div className={styles["description-container"]}>
-          <Htag tag="h2" fontWeight="bold" className={styles["thing-title"]}>
+          <Htag tag="h3" fontWeight="bold" className={styles["thing-title"]}>
             {name}
           </Htag>
           <ul className={styles.list}>

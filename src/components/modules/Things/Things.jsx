@@ -5,8 +5,9 @@ import styles from "./Things.module.css";
 import ThingCard from "../../elements/ThingCard/ThingCard";
 import { THINGS } from "../../../constants/mocks";
 import Htag from "../../elements/Htag/Htag";
+import ROLES from "../../../constants/roles";
 
-function Things({ className, title, thingsAmount = 0 }) {
+function Things({ className, title, thingsAmount = 0, userRole = ROLES.USER }) {
   return (
     <div className={cn(styles["things-wrapper"], className)}>
       <div className={styles["title-wrapper"]}>
@@ -17,7 +18,7 @@ function Things({ className, title, thingsAmount = 0 }) {
       </div>
       <div className={styles["things-container"]}>
         {THINGS.map(thing => (
-          <ThingCard key={thing.id} thing={thing} />
+          <ThingCard key={thing.id} thing={thing} userRole={userRole} />
         ))}
       </div>
       <Pagination count={10} />

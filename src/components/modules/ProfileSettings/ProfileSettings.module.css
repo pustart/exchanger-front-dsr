@@ -1,0 +1,55 @@
+.setting-container {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  width: 100%;
+  height: 100%;
+  gap: 1.25rem;
+}
+
+.title-wrapper {
+  width: 100%;
+  padding-bottom: 1.25rem;
+
+  color: var(--base-strong-down);
+  border-bottom: 1.5px solid var(--faint-weak);
+}
+
+.main-title {
+  width: 100%;
+  margin: 0;
+
+  color: var(--accent-strong);
+
+  font-size: 1.5rem;
+  line-height: 2.25rem;
+
+}
+
+.setting-block {
+  width: 100%;
+  padding-bottom: 1.25rem;
+
+  color: var(--base-strong-down);
+  border-bottom: 1.5px solid var(--faint-weak);
+}
+
+.setting-title {
+  margin: 0 0 0.5rem;
+}
+
+.setting-description {
+  margin: 0 0 0.5rem;
+
+  color: var(--faint-strong);
+}
+
+.setting-input {
+  padding: 0.25rem;
+}
+
+.btn-container {
+  align-self: flex-end;
+}

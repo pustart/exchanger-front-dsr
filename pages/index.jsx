@@ -1,8 +1,9 @@
 import React from "react";
+import ThingsPage from "../src/components/templates/CommonPages/ThingsPage/ThingsPage";
 import withDefaultLayout from "../src/layouts/Default/DefaultLayout";
 
-function Home() {
-  return <></>;
+function Things() {
+  return <ThingsPage />;
 }
 
-export default withDefaultLayout(Home);
+export default withDefaultLayout(Things);

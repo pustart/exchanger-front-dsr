@@ -40,14 +40,14 @@ function UserCard({ userInfo, className, ...props }) {
         >
           Удалить
         </Button>
-        <Button
+        {/* <Button
           height="2.25rem"
           round="squared"
           appearance="outlined"
           className={styles["delete-btn"]}
         >
           К вещам
-        </Button>
+        </Button> */}
       </div>
     </article>
   );

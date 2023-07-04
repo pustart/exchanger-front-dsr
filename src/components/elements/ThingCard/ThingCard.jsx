@@ -1,23 +1,21 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
-import Chip from "@mui/material/Chip";
-import { styled } from "@mui/material/styles";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Chip from "../Chip/Chip";
 import styles from "./ThingCard.module.css";
 import Htag from "../Htag/Htag";
 import Button from "../Button/Button";
 import ROLES from "../../../constants/roles";
 
-const StyledChip = styled(Chip)(({ appearance }) => ({
-  color: "var(--accent-strong-up)",
-  backgroundColor: appearance === "transparent" ? "none" : "var(--complement-strong)",
-  fontSize: "0.75rem",
-  textTransform: "none",
-}));
-
 function ThingCard({ thing, userRole = ROLES.USER }) {
   const { id, name, description, address, photo, author, category, exchangeCategory } = thing;
+  const router = useRouter();
+
+  const handleMoreClick = () => {
+    router.push(`/things/thing/${id}`);
+  };
 
   return (
     <article className={styles["card-container"]}>
@@ -38,22 +36,17 @@ function ThingCard({ thing, userRole = ROLES.USER }) {
             <li className={styles["list-item"]}>Автор: {author}</li>
             <li className={styles["list-item"]}>
               <span>Категория: </span>
-              <StyledChip
-                appearance="transparent"
-                label={category}
-                size="small"
-                variant="outlined"
-              />
+              <Chip appearance="transparent" label={category} size="small" variant="outlined" />
             </li>
             <li className={styles["list-item"]}>
               <span>Категория для обмена: </span>
-              <StyledChip label={exchangeCategory} size="small" />
+              <Chip label={exchangeCategory} size="small" />
             </li>
           </ul>
         </div>
       </div>
       <footer className={styles["btn-container"]}>
-        <Button appearance="outlined" height="2rem" round="squared">
+        <Button appearance="outlined" height="2rem" round="squared" onClick={handleMoreClick}>
           Подробнее
         </Button>
         {userRole === ROLES.ADMIN ? (

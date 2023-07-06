@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { HYDRATE } from 'next-redux-wrapper'
+import { HYDRATE } from "next-redux-wrapper";
 import { BACKEND_PATH } from "../../constants/api";
 
 export const categoryApi = createApi({

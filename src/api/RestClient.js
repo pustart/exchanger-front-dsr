@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import axios from "axios";
 
-axios.defaults.headers.common.Accept = 'application/json';
+axios.defaults.headers.common.Accept = "application/json";
 axios.defaults.timeout = 12000;
 
 const getHttpHeaders = (isAuthenticated = false) => {
@@ -9,7 +9,7 @@ const getHttpHeaders = (isAuthenticated = false) => {
   if (isAuthenticated) {
     return {
       headers: {
-        Authorization: 'Bearer YOUR_TOKEN',
+        Authorization: "Bearer YOUR_TOKEN",
       },
     };
   }

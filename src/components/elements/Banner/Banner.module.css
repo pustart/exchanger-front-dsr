@@ -1,0 +1,35 @@
+.banner {
+  /* padding-top: 6.25rem; */
+
+  /* margin-left: -6.25rem; */
+  position: absolute;
+  left: 0;
+
+  width: 100vw;
+  height: 6.25rem;
+  margin-bottom: 4rem;
+
+  background: var(--complement-background);
+}
+
+.content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  width: 100%;
+  max-width: var(--content-width-pc);
+  height: 100%;
+  margin-inline: auto;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+
+  height: 100%;
+
+  vertical-align: center;
+
+  font-size: 1.75rem;
+}

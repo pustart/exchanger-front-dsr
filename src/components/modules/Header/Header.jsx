@@ -2,12 +2,15 @@ import React from "react";
 import cn from "classnames";
 import { Avatar } from "@mui/material";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
 import styles from "./Header.module.css";
 import Button from "../../elements/Button/Button";
 import Navigation from "../Navigation/Navigation";
 import ROLES from "../../../constants/roles";
 
-export function Header({ visible, className, userRole = ROLES.ADMIN, ...props }) {
+export function Header({ visible, className, userRole = ROLES.USER, ...props }) {
+  const router = useRouter();
+
   return (
     <header className={cn(className, styles.header)} {...props}>
       <div className={styles["header-container"]}>
@@ -17,7 +20,11 @@ export function Header({ visible, className, userRole = ROLES.ADMIN, ...props })
             <Avatar src="/images/default-profile.webp" className={styles.avatar} />
           </NextLink>
           {userRole === ROLES.ADMIN ? null : (
-            <Button className={styles["add-btn"]} appearance="contained">
+            <Button
+              className={styles["add-btn"]}
+              appearance="contained"
+              onClick={() => router.push("/things/add")}
+            >
               Разместить вещь
             </Button>
           )}

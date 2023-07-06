@@ -1,8 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import "../src/styles/global.css";
 import Head from "next/head";
 import React from "react";
 import { StyledEngineProvider } from "@mui/material/styles";
+import { Provider } from "react-redux";
 import { roboto } from "../src/fonts/fonts";
+import { store, wrapper } from "../src/store/store";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -20,4 +23,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);

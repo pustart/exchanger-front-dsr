@@ -51,7 +51,7 @@ function ProfileSettings({ className, ...props }) {
         <Input
           value={phone}
           pattern="^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$"
-          type="text"
+          type="tel"
           name="phone"
           id="phone"
           required

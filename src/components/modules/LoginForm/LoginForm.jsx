@@ -32,7 +32,7 @@ function LoginForm({ className, title, ...props }) {
           Авторизируйтесь
         </Htag>
         <p className={cn(styles.paragraph, styles["form-description"])}>
-          Пожалуйста, войдите, используя реквизиты учетной записи.
+          Пожалуйста, войдите, используя реквизиты учетной записи
         </p>
         <div className={styles["input-wrapper"]}>
           <Input
@@ -68,7 +68,7 @@ function LoginForm({ className, title, ...props }) {
           Авторизироваться
         </Button>
         <p className={cn(styles.paragraph, styles["link-wrapper"])}>
-          <NextLink href="/" className={styles.link}>
+          <NextLink href="/registration/step1" className={styles.link}>
             Еще нет аккаунта? Зарегестрируйтесь
           </NextLink>
         </p>

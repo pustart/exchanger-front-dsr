@@ -5,9 +5,6 @@ import Button from "../../../elements/Button/Button";
 import Htag from "../../../elements/Htag/Htag";
 import Input from "../../../elements/Input/Input";
 import styles from "./AddCategoryPage.module.css";
-import restClient from "../../../../api/RestClient";
-import { BACKEND_PATH } from "../../../../constants/api";
-import { CategoryCreateDto } from "../../../../constants/dto";
 import { useCreateCategoryMutation } from "../../../../store/categories/category.api";
 import { addCategory } from "../../../../store/categories/category.slice";
 
@@ -18,20 +15,13 @@ function AddCategoryPage() {
   const dispatch = useDispatch();
   const [createCategoryMutation] = useCreateCategoryMutation();
 
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   restClient.post(`${BACKEND_PATH}/categories`, new CategoryCreateDto(text));
-  //   router.push("/categories");
-  // };
   const handleSubmit = async e => {
     e.preventDefault();
     try {
       const response = await createCategoryMutation({ name: text }).unwrap();
-      const newCategory = response.data; // Предполагается, что ответ содержит созданную категорию
+      const newCategory = response.data;
 
-      // Добавить новую категорию в состояние стора (предположим, что у вас есть соответствующий action creator)
       dispatch(addCategory(newCategory));
-
       router.push("/categories");
     } catch (error) {
       console.log("Ошибка при добавлении категории:", error);

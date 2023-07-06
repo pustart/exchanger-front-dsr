@@ -1,15 +1,21 @@
 import React from "react";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import Category from "../../../modules/Category/Category";
 import CategoryAdd from "../../../modules/CategoryAdd/CategoryAdd";
-import { CATEGORIES } from "../../../../constants/mocks";
+import styles from "./CategoriesPage.module.css";
 
-function CategoriesPage() {
+function CategoriesPage({ categories }) {
+  const [animationParent] = useAutoAnimate();
   return (
     <>
       <CategoryAdd />
-      {CATEGORIES.map(category => (
-        <Category key={category.id} categoryInfo={category} />
-      ))}
+      <ul ref={animationParent} className={styles.list}>
+        {categories.map(category => (
+          <li key={category.id} className={styles["list-item"]}>
+            <Category key={category.id} categoryInfo={category} />
+          </li>
+        ))}
+      </ul>
     </>
   );
 }

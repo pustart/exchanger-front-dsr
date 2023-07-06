@@ -3,9 +3,8 @@ import "../src/styles/global.css";
 import Head from "next/head";
 import React from "react";
 import { StyledEngineProvider } from "@mui/material/styles";
-import { Provider } from "react-redux";
 import { roboto } from "../src/fonts/fonts";
-import { store, wrapper } from "../src/store/store";
+import { wrapper } from "../src/store/store";
 
 function MyApp({ Component, pageProps }) {
   return (

@@ -1,26 +1,36 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import cn from "classnames";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
+import { useDispatch, useSelector } from "react-redux";
+import { useSession } from "next-auth/react";
 import styles from "./Filter.module.css";
 import Htag from "../../elements/Htag/Htag";
-import { CATEGORIES } from "../../../constants/mocks";
+import { useGetCategoriesQuery } from "../../../store/categories/category.api";
+import { setCategory, setExchangeCategory, setSort } from "../../../store/filter/filter.slice";
 
 function Filter({ className, ...props }) {
-  const [category, setCategory] = React.useState("");
-  const [exchangeCategory, setExchangeCategory] = React.useState("");
-  const [sort, setSort] = React.useState("");
+  const { data: session } = useSession();
+  const dispatch = useDispatch();
+  const category = useSelector(state => state.filter.category);
+  const exchangeCategory = useSelector(state => state.filter.exchangeCategory);
+  const sort = useSelector(state => state.filter.sort);
+  const categories = useSelector(state => state.categories);
+  const categoriesData = useGetCategoriesQuery(session?.user?.accessToken);
 
-  const handleChangeCategory = event => {
-    setCategory(event.target.value);
+  const handleChangeCategory = e => {
+    e.preventDefault();
+    dispatch(setCategory(e.target.value));
   };
 
-  const handleExchangeCategory = event => {
-    setExchangeCategory(event.target.value);
+  const handleExchangeCategory = e => {
+    e.preventDefault();
+    dispatch(setExchangeCategory(e.target.value));
   };
 
-  const handleChangeSort = event => {
-    setSort(event.target.value);
+  const handleChangeSort = e => {
+    e.preventDefault();
+    dispatch(setSort(e.target.value));
   };
 
   return (
@@ -42,8 +52,8 @@ function Filter({ className, ...props }) {
           <MenuItem value="">
             <em>Не выбрано</em>
           </MenuItem>
-          {CATEGORIES.map(curCategory => (
-            <MenuItem key={curCategory.id} value={curCategory.name}>
+          {categories.map(curCategory => (
+            <MenuItem key={curCategory.id} value={curCategory.id}>
               {curCategory.name}
             </MenuItem>
           ))}
@@ -63,8 +73,8 @@ function Filter({ className, ...props }) {
           <MenuItem value="">
             <em>Не выбрано</em>
           </MenuItem>
-          {CATEGORIES.map(curCategory => (
-            <MenuItem key={curCategory.id} value={curCategory.name}>
+          {categories.map(curCategory => (
+            <MenuItem key={curCategory.id} value={curCategory.id}>
               {curCategory.name}
             </MenuItem>
           ))}

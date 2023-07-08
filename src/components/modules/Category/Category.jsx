@@ -3,6 +3,7 @@ import React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import cn from "classnames";
 import { useDispatch } from "react-redux";
+import { useSession } from "next-auth/react";
 import styles from "./Category.module.css";
 import Htag from "../../elements/Htag/Htag";
 import Button from "../../elements/Button/Button";
@@ -13,11 +14,12 @@ function Category({ categoryInfo, className }) {
   const { id, name, amount } = categoryInfo;
 
   const dispatch = useDispatch();
+  const { data: session } = useSession();
   const [deleteCategoryMutation] = useDeleteCategoryMutation();
 
   const handleDelete = async categoryId => {
     try {
-      await deleteCategoryMutation(categoryId).unwrap();
+      await deleteCategoryMutation({ id: categoryId, token: session.user.accessToken }).unwrap();
       dispatch(deleteCategory(categoryId));
     } catch (error) {
       console.log("Ошибка удаления категории:", error);

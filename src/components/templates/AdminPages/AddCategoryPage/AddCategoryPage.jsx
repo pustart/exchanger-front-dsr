@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
+import { useSession } from "next-auth/react";
 import Button from "../../../elements/Button/Button";
 import Htag from "../../../elements/Htag/Htag";
 import Input from "../../../elements/Input/Input";
@@ -9,6 +10,7 @@ import { useCreateCategoryMutation } from "../../../../store/categories/category
 import { addCategory } from "../../../../store/categories/category.slice";
 
 function AddCategoryPage() {
+  const { data: session } = useSession();
   const textLength = 25;
   const [text, setText] = useState("");
   const router = useRouter();
@@ -18,7 +20,13 @@ function AddCategoryPage() {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const response = await createCategoryMutation({ name: text }).unwrap();
+      const payload = {
+        name: text,
+      };
+      const response = await createCategoryMutation({
+        createCategoryDto: payload,
+        token: session.user.accessToken,
+      }).unwrap();
       const newCategory = response.data;
 
       dispatch(addCategory(newCategory));

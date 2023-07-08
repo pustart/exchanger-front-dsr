@@ -10,6 +10,9 @@
 
   width: 100%;
   margin-bottom: 0.5rem;
+  padding: 0;
+
+  list-style: none;
   grid-template-columns: 1fr 1fr;
   gap: 1.25rem;
 }

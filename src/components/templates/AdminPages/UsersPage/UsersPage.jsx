@@ -1,17 +1,22 @@
 import React from "react";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import Pagination from "../../../elements/Pagination/Pagination";
 import styles from "./UsersPage.module.css";
 import UserCard from "../../../elements/UserCard/UserCard";
 import { USERS } from "../../../../constants/mocks";
 
-function UsersPage() {
+function UsersPage({ users = USERS }) {
+  const [animationParent] = useAutoAnimate();
+
   return (
     <div className={styles["users-page-container"]}>
-      <div className={styles["user-card-container"]}>
-        {USERS.map(user => (
-          <UserCard key={user.id} userInfo={user} />
+      <ul ref={animationParent} className={styles["user-card-container"]}>
+        {users.map(user => (
+          <li key={user.id}>
+            <UserCard key={user.id} userInfo={user} />
+          </li>
         ))}
-      </div>
+      </ul>
       <Pagination count={5} />
     </div>
   );

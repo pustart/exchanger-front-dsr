@@ -1,19 +1,45 @@
 import { React, useState } from "react";
 import cn from "classnames";
+import { useSelector, useDispatch } from "react-redux";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import styles from "./ProfileSettings.module.css";
 import Htag from "../../elements/Htag/Htag";
 import Input from "../../elements/Input/Input";
 import Button from "../../elements/Button/Button";
+import { useUpdateUsersMutation } from "../../../store/users/user.api";
+import { setUser } from "../../../store/users/user.slice";
 
 function ProfileSettings({ className, ...props }) {
-  const [email, setEmail] = useState("example@gmail.com");
-  const [phone, setPhone] = useState("8-800-555-35-35");
-  const [name, setName] = useState("Артем");
-  const [surname, setSurname] = useState("Пустовалов");
-  const [avatar, setAvatar] = useState("");
+  const { data: session } = useSession();
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const [updateUsersMutation] = useUpdateUsersMutation();
+  const usr = useSelector(state => state.user);
+  const [email, setEmail] = useState(usr.email);
+  const [phone, setPhone] = useState(usr.phone);
+  const [name, setName] = useState(usr.name);
+  const [avatar, setAvatar] = useState(null);
 
   const handleSubmit = async e => {
     e.preventDefault();
+    try {
+      const payload = {
+        name,
+        email,
+        phone,
+      };
+      const response = await updateUsersMutation({
+        id: session.user.id,
+        updateUserDto: payload,
+        token: session.user.accessToken,
+      }).unwrap();
+      dispatch(setUser(response.data));
+      router.reload();
+    } catch (error) {
+      console.log("Ошибка при обновлении пользователя:", error);
+    }
   };
 
   return (
@@ -73,23 +99,6 @@ function ProfileSettings({ className, ...props }) {
           id="name"
           required
           onChange={e => setName(e.target.value)}
-          className={styles["setting-input"]}
-        />
-      </div>
-      <div className={styles["setting-block"]}>
-        <Htag tag="h3" fontWeight="bold" className={styles["setting-title"]}>
-          Ваша фамилия
-        </Htag>
-        <p className={styles["setting-description"]}>
-          Фамилия будет отображаться на вашем профиле и в информации о ваших вещах.
-        </p>
-        <Input
-          value={surname}
-          type="text"
-          name="surname"
-          id="surname"
-          required
-          onChange={e => setSurname(e.target.value)}
           className={styles["setting-input"]}
         />
       </div>

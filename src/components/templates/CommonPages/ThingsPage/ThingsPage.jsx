@@ -3,7 +3,7 @@ import styles from "./ThingsPage.module.css";
 import Filter from "../../../modules/Filter/Filter";
 import Things from "../../../modules/Things/Things";
 
-function UsersPage() {
+function ThingsPage() {
   return (
     <div className={styles["grid-container"]}>
       <Filter />
@@ -12,4 +12,4 @@ function UsersPage() {
   );
 }
 
-export default UsersPage;
+export default ThingsPage;

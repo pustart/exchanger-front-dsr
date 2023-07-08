@@ -4,12 +4,12 @@ import axios from "axios";
 axios.defaults.headers.common.Accept = "application/json";
 axios.defaults.timeout = 12000;
 
-const getHttpHeaders = (isAuthenticated = false) => {
+const getHttpHeaders = (token = null) => {
   // Add your custom logic here, for example add a Token to the Headers
-  if (isAuthenticated) {
+  if (token) {
     return {
       headers: {
-        Authorization: "Bearer YOUR_TOKEN",
+        Authorization: `Bearer ${token}`,
       },
     };
   }
@@ -17,15 +17,15 @@ const getHttpHeaders = (isAuthenticated = false) => {
   return {};
 };
 
-const get = path => axios.get(path, getHttpHeaders());
+const get = (path, token = null) => axios.get(path, getHttpHeaders(token));
 
-const del = path => axios.delete(path, getHttpHeaders());
+const del = (path, token = null) => axios.delete(path, getHttpHeaders(token));
 
-const post = (path, data) => axios.post(path, data, getHttpHeaders());
+const post = (path, data, token = null) => axios.post(path, data, getHttpHeaders(token));
 
-const put = (path, data) => axios.post(path, data, getHttpHeaders());
+const put = (path, data, token = null) => axios.post(path, data, getHttpHeaders(token));
 
-const patch = (path, data) => axios.post(path, data, getHttpHeaders());
+const patch = (path, data, token = null) => axios.post(path, data, getHttpHeaders(token));
 
 export default {
   get,

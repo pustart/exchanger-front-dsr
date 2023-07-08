@@ -3,8 +3,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { HYDRATE } from "next-redux-wrapper";
 import { BACKEND_PATH } from "../../constants/api";
 
-export const categoryApi = createApi({
-  reducerPath: "api/categories",
+export const userApi = createApi({
+  reducerPath: "api/users",
   baseQuery: fetchBaseQuery({ baseUrl: `${BACKEND_PATH}` }),
   extractRehydrationInfo(action, { reducerPath }) {
     if (action.type === HYDRATE) {
@@ -12,52 +12,51 @@ export const categoryApi = createApi({
     }
   },
   endpoints: build => ({
-    getCategories: build.query({
+    getUsers: build.query({
       query: (token = null) => ({
-        url: "/categories",
+        url: "/users",
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }),
     }),
-    getCategoryById: build.query({
+    getUsersById: build.query({
       query: ({ id, token = null }) => ({
-        url: `/categories/${id}`,
+        url: `/users/${id}`,
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }),
     }),
-    createCategory: build.mutation({
-      query: ({ createCategoryDto, token = null }) => ({
-        url: "/categories",
+    createUsers: build.mutation({
+      query: ({ createUserDto, token = null }) => ({
+        url: "/users",
         method: "POST",
-        body: createCategoryDto,
+        body: createUserDto,
         headers: {
           "Content-type": "application/json; charset=UTF-8",
           Authorization: `Bearer ${token}`,
         },
       }),
     }),
-    updateCategory: build.mutation({
-      query: ({ id, updateCategoryDto, token = null }) => ({
-        url: `/categories/${id}`,
+    updateUsers: build.mutation({
+      query: ({ id, updateUserDto, token = null }) => ({
+        url: `/users/${id}`,
         method: "PATCH",
-        body: updateCategoryDto,
+        body: updateUserDto,
         headers: {
           "Content-type": "application/json; charset=UTF-8",
           Authorization: `Bearer ${token}`,
         },
       }),
     }),
-    deleteCategory: build.mutation({
+    deleteUsers: build.mutation({
       query: ({ id, token = null }) => ({
-        url: `/categories/${id}`,
+        url: `/users/${id}`,
         method: "DELETE",
         headers: {
-          "Content-type": "application/json; charset=UTF-8",
           Authorization: `Bearer ${token}`,
         },
       }),
@@ -66,12 +65,12 @@ export const categoryApi = createApi({
 });
 
 export const {
-  useGetCategoriesQuery,
-  useGetCategoryByIdQuery,
-  useCreateCategoryMutation,
-  useUpdateCategoryMutation,
-  useDeleteCategoryMutation,
+  useGetUsersQuery,
+  useGetUsersByIdQuery,
+  useCreateUsersMutation,
+  useUpdateUsersMutation,
+  useDeleteUsersMutation,
   util: { getRunningQueriesThunk },
-} = categoryApi;
+} = userApi;
 
-export const { getCategories, getCategoryById } = categoryApi.endpoints;
+export const { getUsers, getUsersById } = userApi.endpoints;

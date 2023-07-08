@@ -1,8 +1,10 @@
+/* eslint-disable no-param-reassign */
 import React from "react";
 import cn from "classnames";
 import { Avatar } from "@mui/material";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 import styles from "./Header.module.css";
 import Button from "../../elements/Button/Button";
 import Navigation from "../Navigation/Navigation";
@@ -10,6 +12,10 @@ import ROLES from "../../../constants/roles";
 
 export function Header({ visible, className, userRole = ROLES.USER, ...props }) {
   const router = useRouter();
+  const { data: session } = useSession();
+  if (session) {
+    userRole = session.user.role;
+  }
 
   return (
     <header className={cn(className, styles.header)} {...props}>

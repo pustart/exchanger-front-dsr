@@ -2,26 +2,47 @@ import { React, useState } from "react";
 import cn from "classnames";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./RegFormStep2.module.css";
 import Htag from "../../../elements/Htag/Htag";
 import Input from "../../../elements/Input/Input";
 import Button from "../../../elements/Button/Button";
+import {
+  setName,
+  setSurname,
+  setPhoto,
+  setPhone,
+  setBirthday,
+} from "../../../../store/regForm/regForm.slice";
 
 function RegFormStep2({ className, title, ...props }) {
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
-  const [avatar, setAvatar] = useState(null);
-  const [phone, setPhone] = useState("");
-  const [birthday, setBirthday] = useState("");
-
+  const dispatch = useDispatch();
   const router = useRouter();
 
+  const name = useSelector(state => state.regForm.name);
+  const surname = useSelector(state => state.regForm.surname);
+  const avatar = useSelector(state => state.regForm.photo);
+  const phone = useSelector(state => state.regForm.phone);
+  const birthday = useSelector(state => state.regForm.birthday);
+
   const handleChangeName = e => {
-    setName(e.target.value);
+    dispatch(setName(e.target.value));
   };
 
   const handleChangeSurname = e => {
-    setSurname(e.target.value);
+    dispatch(setSurname(e.target.value));
+  };
+
+  const handleChangeAvatar = e => {
+    dispatch(setPhoto(e.target.value));
+  };
+
+  const handleChangePhone = e => {
+    dispatch(setPhone(e.target.value));
+  };
+
+  const handleChangeBirthday = e => {
+    dispatch(setBirthday(e.target.value));
   };
 
   const handleSubmit = e => {
@@ -67,7 +88,8 @@ function RegFormStep2({ className, title, ...props }) {
             placeholder="Выберете аватарку"
             name="birthday"
             id="birthday"
-            onChange={e => setBirthday(e.target.value)}
+            required
+            onChange={handleChangeBirthday}
             className={styles.input}
           />
         </div>
@@ -80,7 +102,7 @@ function RegFormStep2({ className, title, ...props }) {
             name="phone"
             id="phone"
             required
-            onChange={e => setPhone(e.target.value)}
+            onChange={handleChangePhone}
             className={styles.input}
           />
         </div>
@@ -92,7 +114,7 @@ function RegFormStep2({ className, title, ...props }) {
             accept="image/jpeg, image/png"
             name="avatar"
             id="avatar"
-            onChange={e => setAvatar(e.target.value)}
+            onChange={handleChangeAvatar}
             className={styles.input}
           />
         </div>

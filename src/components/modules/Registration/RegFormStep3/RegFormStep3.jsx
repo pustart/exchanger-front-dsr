@@ -2,40 +2,77 @@ import { React, useState } from "react";
 import cn from "classnames";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { signIn, useSession } from "next-auth/react";
 import styles from "./RegFormStep3.module.css";
 import Htag from "../../../elements/Htag/Htag";
 import Input from "../../../elements/Input/Input";
 import Button from "../../../elements/Button/Button";
+import {
+  setEmail,
+  setPassword,
+  setName,
+  setSurname,
+  setPhone,
+  setBirthday,
+} from "../../../../store/regForm/regForm.slice";
+import restClient from "../../../../api/RestClient";
+import { BACKEND_PATH } from "../../../../constants/api";
 
 function RegFormStep3({ className, title, ...props }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
-  const [phone, setPhone] = useState("");
-  const [birthday, setBirthday] = useState("");
-
+  const { data: session } = useSession();
+  const dispatch = useDispatch();
   const router = useRouter();
 
+  const email = useSelector(state => state.regForm.email);
+  const password = useSelector(state => state.regForm.password);
+  const name = useSelector(state => state.regForm.name);
+  const surname = useSelector(state => state.regForm.surname);
+  const phone = useSelector(state => state.regForm.phone);
+  const photo = useSelector(state => state.regForm.photo);
+  const birthday = useSelector(state => state.regForm.birthday);
+
   const handleChangeEmail = e => {
-    setEmail(e.target.value);
+    dispatch(setEmail(e.target.value));
   };
 
   const handleChangePassword = e => {
-    setPassword(e.target.value);
+    dispatch(setPassword(e.target.value));
   };
 
   const handleChangeName = e => {
-    setName(e.target.value);
+    dispatch(setName(e.target.value));
   };
 
   const handleChangeSurname = e => {
-    setSurname(e.target.value);
+    dispatch(setSurname(e.target.value));
   };
 
-  const handleSubmit = e => {
+  const handleChangePhone = e => {
+    dispatch(setPhone(e.target.value));
+  };
+
+  const handleChangeBirthday = e => {
+    dispatch(setBirthday(e.target.value));
+  };
+
+  const handleSubmit = async e => {
     e.preventDefault();
-    router.push("/registration/step3");
+    const usrData = {
+      name: `${name} ${surname}`,
+      password,
+      email,
+      phone,
+      birthday,
+      photo: null,
+    };
+    const res = await restClient.post(`${BACKEND_PATH}/auth/registration`, usrData);
+    const data = await res.data;
+    if (data) {
+      signIn("credentials", { callbackUrl: "/", email, password });
+    } else {
+      router.push("/registration/step1");
+    }
   };
 
   return (
@@ -87,7 +124,7 @@ function RegFormStep3({ className, title, ...props }) {
           <Input
             value={password}
             placeholder="Введите ваш пароль"
-            type="password"
+            type="text"
             name="password"
             id="password"
             required
@@ -102,7 +139,7 @@ function RegFormStep3({ className, title, ...props }) {
             placeholder="Выберете аватарку"
             name="birthday"
             id="birthday"
-            onChange={e => setBirthday(e.target.value)}
+            onChange={handleChangeBirthday}
             className={styles.input}
           />
         </div>
@@ -115,7 +152,7 @@ function RegFormStep3({ className, title, ...props }) {
             name="phone"
             id="phone"
             required
-            onChange={e => setPhone(e.target.value)}
+            onChange={handleChangePhone}
             className={styles.input}
           />
         </div>

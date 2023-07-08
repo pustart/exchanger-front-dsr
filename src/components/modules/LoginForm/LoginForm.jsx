@@ -2,12 +2,14 @@ import { React, useState } from "react";
 import cn from "classnames";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
+import { signIn, useSession } from "next-auth/react";
 import styles from "./LoginForm.module.css";
 import Htag from "../../elements/Htag/Htag";
 import Input from "../../elements/Input/Input";
 import Button from "../../elements/Button/Button";
 
 function LoginForm({ className, title, ...props }) {
+  const { data: session } = useSession();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -22,12 +24,12 @@ function LoginForm({ className, title, ...props }) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    router.push("/");
+    signIn("credentials", { callbackUrl: "/", email, password });
   };
 
   return (
     <div className={cn(styles["login-wrapper"], className)} {...props}>
-      <form onSubmit={handleSubmit} className={styles["login-form"]}>
+      <form autoComplete="on" onSubmit={handleSubmit} className={styles["login-form"]}>
         <Htag tag="h3" fontWeight="medium" className={styles["form-title"]}>
           Авторизируйтесь
         </Htag>

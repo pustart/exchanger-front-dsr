@@ -6,10 +6,7 @@ import Link from "../../elements/Link/Link";
 import ROLES from "../../../constants/roles";
 
 function Navigation({ className, userRole = ROLES.USER, logo = false, ...props }) {
-  let sections = [
-    { title: "Главная", path: "/" },
-    { title: "Обмен", path: "/exchange" },
-  ];
+  let sections = [{ title: "Главная", path: "/" }];
 
   if (userRole === ROLES.ADMIN) {
     sections = [

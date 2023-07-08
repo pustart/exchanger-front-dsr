@@ -2,23 +2,27 @@ import { React, useState } from "react";
 import cn from "classnames";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./RegFormStep1.module.css";
 import Htag from "../../../elements/Htag/Htag";
 import Input from "../../../elements/Input/Input";
 import Button from "../../../elements/Button/Button";
+import { setEmail, setPassword } from "../../../../store/regForm/regForm.slice";
 
 function RegFormStep1({ className, title, ...props }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const email = useSelector(state => state.regForm.email);
+  const password = useSelector(state => state.regForm.password);
   const [passwordConfirm, setPasswordConfirm] = useState("");
+
   const router = useRouter();
 
   const handleChangeEmail = e => {
-    setEmail(e.target.value);
+    dispatch(setEmail(e.target.value));
   };
 
   const handleChangePassword = e => {
-    setPassword(e.target.value);
+    dispatch(setPassword(e.target.value));
   };
 
   const handlePasswordConfirm = e => {

@@ -23,7 +23,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ctx 
         permanent: false,
       },
     };
-  };
+  }
 
   if (token.role === ROLES.ADMIN) {
     return {
@@ -32,7 +32,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ctx 
         permanent: false,
       },
     };
-  };
+  }
 
   const res = await restClient.get(`${BACKEND_PATH}/categories`, token.accessToken);
   const data = await res.data;

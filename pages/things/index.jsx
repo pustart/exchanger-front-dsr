@@ -40,7 +40,6 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ctx 
   store.dispatch(setUser({ ...user }));
   store.dispatch(setThings(things));
 
-
   return {
     redirect: {
       destination: `/`,

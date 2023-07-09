@@ -12,7 +12,7 @@ import ROLES from "../src/constants/roles";
 function Users() {
   const users = useSelector(state => state.allUsers);
 
-  return <UsersPage users={users} pagination={false}/>;
+  return <UsersPage users={users} pagination={false} />;
 }
 
 export default withDefaultLayout(Users);

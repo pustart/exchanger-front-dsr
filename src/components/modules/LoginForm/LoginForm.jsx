@@ -29,7 +29,7 @@ function LoginForm({ className, title, ...props }) {
       signIn("credentials", { email, password });
       router.push("/");
     } catch (err) {
-      router.push("/login")
+      router.push("/login");
     }
   };
 

@@ -2,7 +2,6 @@ import React from "react";
 import { getToken } from "next-auth/jwt";
 import withDefaultLayout from "../../src/layouts/Default/DefaultLayout";
 import RegPage3 from "../../src/components/templates/CommonPages/RegistrationPages/Step3/RegPage3";
-import { wrapper } from "../../src/store/store";
 
 function RegStep3() {
   return <RegPage3 />;
@@ -16,8 +15,8 @@ export async function getServerSideProps(ctx) {
     return {
       redirect: {
         destination: `/`,
-        permanent: false
-      }
+        permanent: false,
+      },
     };
   }
 

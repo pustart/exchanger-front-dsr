@@ -1,17 +1,15 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { React, useState } from "react";
 import cn from "classnames";
-import NextLink from "next/link";
 import { useRouter } from "next/router";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useSession } from "next-auth/react";
 import styles from "./AddThingForm.module.css";
 import Htag from "../../elements/Htag/Htag";
 import Input from "../../elements/Input/Input";
 import Button from "../../elements/Button/Button";
-import { CATEGORIES } from "../../../constants/mocks";
 import restClient from "../../../api/RestClient";
 import { BACKEND_PATH } from "../../../constants/api";
 

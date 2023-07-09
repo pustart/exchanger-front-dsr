@@ -1,10 +1,8 @@
 /* eslint-disable import/no-named-as-default-member */
 import React from "react";
-import { useRouter } from "next/router";
 import { getToken } from "next-auth/jwt";
 import withDefaultLayout from "../../../src/layouts/Default/DefaultLayout";
 import OneThingPage from "../../../src/components/templates/CommonPages/OneThingPage/OneThingPage";
-import { THINGS } from "../../../src/constants/mocks";
 import { wrapper } from "../../../src/store/store";
 import restClient from "../../../src/api/RestClient";
 import { BACKEND_PATH } from "../../../src/constants/api";

@@ -15,7 +15,8 @@ import { deleteThing } from "../../../store/things/personalThings.slice";
 
 function ThingCard({ thing }) {
   const { data: session } = useSession();
-  const { id, name, description, address, photo, author, authorId, category, exchangeCategory } = thing;
+  const { id, name, description, address, photo, author, authorId, category, exchangeCategory } =
+    thing;
   const user = useSelector(state => state.user);
   const router = useRouter();
   const dispatch = useDispatch();

@@ -22,7 +22,6 @@ function ProfileMenu({ userRole = ROLES.ADMIN, className, ...props }) {
   const birthdayString = user.birthday;
   const formattedBirthday = dateParse(birthdayString);
 
-
   return (
     <aside className={cn(styles["profile-container"], className)} {...props}>
       <Image

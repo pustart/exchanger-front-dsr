@@ -34,7 +34,7 @@ export const makeStore = () =>
         categoryApi.middleware,
         registrationApi.middleware,
         userApi.middleware,
-        thingsApi.middleware,
+        thingsApi.middleware
       ),
   });
 

@@ -2,7 +2,6 @@ import React from "react";
 import { getToken } from "next-auth/jwt";
 import withDefaultLayout from "../../src/layouts/Default/DefaultLayout";
 import RegPage2 from "../../src/components/templates/CommonPages/RegistrationPages/Step2/RegPage2";
-import { wrapper } from "../../src/store/store";
 
 function RegStep2() {
   return <RegPage2 />;

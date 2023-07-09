@@ -1,7 +1,6 @@
 import React from "react";
 import { getToken } from "next-auth/jwt";
 import { useSelector } from "react-redux";
-import { useSession } from "next-auth/react";
 import ThingsPage from "../src/components/templates/CommonPages/ThingsPage/ThingsPage";
 import withDefaultLayout from "../src/layouts/Default/DefaultLayout";
 import { wrapper } from "../src/store/store";
@@ -10,9 +9,9 @@ import restClient from "../src/api/RestClient";
 import { setUser } from "../src/store/users/user.slice";
 import { setCategories } from "../src/store/categories/category.slice";
 import { setThings } from "../src/store/things/personalThings.slice";
-import ROLES from '../src/constants/roles';
+import ROLES from "../src/constants/roles";
 
-function Home({things, role}) {
+function Home({ things, role }) {
   const stateThing = useSelector(state => state.personalThings);
 
   return <ThingsPage things={role === ROLES.ADMIN ? stateThing : things} />;
@@ -43,7 +42,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ctx 
 
   const thingsRes = await restClient.get(
     `${BACKEND_PATH}/things/all/${token.id}`,
-    token.accessToken,
+    token.accessToken
   );
   const things = await thingsRes.data;
 

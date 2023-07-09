@@ -4,12 +4,11 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 import Pagination from "../../elements/Pagination/Pagination";
 import styles from "./Things.module.css";
 import ThingCard from "../../elements/ThingCard/ThingCard";
-import { THINGS } from "../../../constants/mocks";
 import Htag from "../../elements/Htag/Htag";
 import ROLES from "../../../constants/roles";
 
 function Things({ className, pagination = true, title, things, userRole = ROLES.USER }) {
-    const [animationParent] = useAutoAnimate();
+  const [animationParent] = useAutoAnimate();
 
   return (
     <div className={cn(styles["things-wrapper"], className)}>

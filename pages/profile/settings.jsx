@@ -30,7 +30,6 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ctx 
   }
   const res = await restClient.get(`${BACKEND_PATH}/users/${token.id}`, token.accessToken);
   const user = await res.data;
-  console.log(user);
 
   store.dispatch(setUser(user));
   return { props: {} };

@@ -23,7 +23,7 @@
 }
 
 .name {
-  margin: 1rem 0 0;
+  margin: 1rem 0;
 
   line-height: 1rem;
 }
@@ -36,6 +36,10 @@
   color: var(--faint-strong);
 
   line-height: 1.3rem;
+}
+
+.list-item {
+  margin: 0 0 0.5rem;
 }
 
 .btn-wrapper {

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { React, useState } from "react";
 import cn from "classnames";
 import NextLink from "next/link";
@@ -58,6 +59,9 @@ function RegFormStep2({ className, title, ...props }) {
         </Htag>
         <p className={cn(styles.paragraph, styles["form-description"])}>Остался всего один шаг!</p>
         <div className={styles["input-wrapper"]}>
+          <label htmlFor="name" className={styles.label}>
+            Имя:
+          </label>
           <Input
             value={name}
             placeholder="Введите ваше имя"
@@ -70,6 +74,9 @@ function RegFormStep2({ className, title, ...props }) {
           />
         </div>
         <div className={styles["input-wrapper"]}>
+          <label htmlFor="surname" className={styles.label}>
+            Фамилия:
+          </label>
           <Input
             value={surname}
             placeholder="Введите вашу фамилию"
@@ -82,6 +89,9 @@ function RegFormStep2({ className, title, ...props }) {
           />
         </div>
         <div className={styles["input-wrapper"]}>
+          <label htmlFor="birthday" className={styles.label}>
+            Ваша дата рождения:
+          </label>
           <Input
             value={birthday}
             type="date"
@@ -94,6 +104,9 @@ function RegFormStep2({ className, title, ...props }) {
           />
         </div>
         <div className={styles["input-wrapper"]}>
+          <label htmlFor="phone" className={styles.label}>
+            Номер телефона:
+          </label>
           <Input
             value={phone}
             pattern="^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$"
@@ -107,6 +120,9 @@ function RegFormStep2({ className, title, ...props }) {
           />
         </div>
         <div className={styles["input-wrapper"]}>
+          <label htmlFor="avatar" className={styles.label}>
+            Фото профиля (опционально):
+          </label>
           <Input
             value={avatar}
             type="file"

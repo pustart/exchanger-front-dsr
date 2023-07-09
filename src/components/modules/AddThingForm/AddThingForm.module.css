@@ -61,6 +61,14 @@
   gap: 1.25rem;
 }
 
+.label {
+  display: block;
+
+  margin: 0 0 0.5rem 0.5rem;
+
+  color: var(--faint-strong);
+}
+
 .link-wrapper {
   margin-top: 1.75rem;
 }
@@ -81,6 +89,8 @@
 }
 
 .description {
+  display: block;
+
   padding: 1rem;
 
   resize: none;

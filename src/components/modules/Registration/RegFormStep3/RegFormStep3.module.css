@@ -34,8 +34,20 @@
   font-weight: 400;
 }
 
+.error-message {
+  color: var(--critic-strong);
+}
+
 .form-description {
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
+}
+
+.label {
+  display: block;
+
+  margin: 0 0 0.5rem 0.5rem;
+
+  color: var(--faint-strong);
 }
 
 .form-title {

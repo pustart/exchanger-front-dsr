@@ -16,13 +16,20 @@
 
   min-width: 34rem;
 
-  /* min-height: 30rem; */
   height: 100%;
   padding: 2rem;
 
   border-radius: var(--squared);
   background-color: var(--faint-weak-down);
   box-shadow: 0 4px 28px -2px rgb(0 0 0 / 8%);
+}
+
+.label {
+  display: block;
+
+  margin: 0 0 0.5rem 0.5rem;
+
+  color: var(--faint-strong);
 }
 
 .paragraph {
@@ -35,7 +42,7 @@
 }
 
 .form-description {
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
 }
 
 .form-title {

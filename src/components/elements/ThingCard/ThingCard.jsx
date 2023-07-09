@@ -3,18 +3,35 @@ import React from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useSelector, useDispatch } from "react-redux";
+import { useSession } from "next-auth/react";
 import Chip from "../Chip/Chip";
 import styles from "./ThingCard.module.css";
 import Htag from "../Htag/Htag";
 import Button from "../Button/Button";
 import ROLES from "../../../constants/roles";
+import { useDeleteThingMutation } from "../../../store/things/things.api";
+import { deleteThing } from "../../../store/things/personalThings.slice";
 
-function ThingCard({ thing, userRole = ROLES.USER }) {
-  const { id, name, description, address, photo, author, category, exchangeCategory } = thing;
+function ThingCard({ thing }) {
+  const { data: session } = useSession();
+  const { id, name, description, address, photo, author, authorId, category, exchangeCategory } = thing;
+  const user = useSelector(state => state.user);
   const router = useRouter();
+  const dispatch = useDispatch();
+  const [deleteThingMutation] = useDeleteThingMutation();
 
   const handleMoreClick = () => {
     router.push(`/things/thing/${id}`);
+  };
+
+  const handleDelete = async thingId => {
+    try {
+      await deleteThingMutation({ id: thingId, token: session.user.accessToken }).unwrap();
+      dispatch(deleteThing(thingId));
+    } catch (error) {
+      console.log("Ошибка удаления вещи:", error);
+    }
   };
 
   return (
@@ -49,8 +66,14 @@ function ThingCard({ thing, userRole = ROLES.USER }) {
         <Button appearance="outlined" height="2rem" round="squared" onClick={handleMoreClick}>
           Подробнее
         </Button>
-        {userRole === ROLES.ADMIN ? (
-          <Button appearance="delete" height="2rem" round="squared" endIcon={<DeleteIcon />}>
+        {authorId === user.id || user.role === ROLES.ADMIN ? (
+          <Button
+            appearance="delete"
+            height="2rem"
+            round="squared"
+            onClick={() => handleDelete(id)}
+            endIcon={<DeleteIcon />}
+          >
             Удалить
           </Button>
         ) : null}

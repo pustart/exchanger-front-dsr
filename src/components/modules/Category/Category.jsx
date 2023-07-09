@@ -11,7 +11,7 @@ import { useDeleteCategoryMutation } from "../../../store/categories/category.ap
 import { deleteCategory } from "../../../store/categories/category.slice";
 
 function Category({ categoryInfo, className }) {
-  const { id, name, amount } = categoryInfo;
+  const { id, name, thingsCount } = categoryInfo;
 
   const dispatch = useDispatch();
   const { data: session } = useSession();
@@ -32,7 +32,7 @@ function Category({ categoryInfo, className }) {
         <Htag tag="h3" fontWeight="medium" className={styles.title}>
           {name}
         </Htag>
-        <div className={styles["amount-info"]}>Количество вещей в категории: {amount}</div>
+        <div className={styles["amount-info"]}>Количество вещей в категории: {thingsCount}</div>
       </div>
       <div>
         <Button

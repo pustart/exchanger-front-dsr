@@ -5,7 +5,6 @@ axios.defaults.headers.common.Accept = "application/json";
 axios.defaults.timeout = 12000;
 
 const getHttpHeaders = (token = null) => {
-  // Add your custom logic here, for example add a Token to the Headers
   if (token) {
     return {
       headers: {

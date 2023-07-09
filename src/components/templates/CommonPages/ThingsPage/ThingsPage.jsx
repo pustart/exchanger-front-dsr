@@ -3,11 +3,11 @@ import styles from "./ThingsPage.module.css";
 import Filter from "../../../modules/Filter/Filter";
 import Things from "../../../modules/Things/Things";
 
-function ThingsPage() {
+function ThingsPage({ things }) {
   return (
     <div className={styles["grid-container"]}>
       <Filter />
-      <Things className={styles.main} title="Все вещи" />
+      <Things things={things} className={styles.main} pagination={false} title="Все вещи" />
     </div>
   );
 }

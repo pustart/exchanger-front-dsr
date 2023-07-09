@@ -40,6 +40,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ctx 
   const categories = data.map(category => ({
     id: category.id,
     name: category.name,
+    thingsCount: category.thingsCount,
   }));
 
   store.dispatch(setCategories(categories));

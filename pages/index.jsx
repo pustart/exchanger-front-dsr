@@ -8,10 +8,13 @@ import { BACKEND_PATH } from "../src/constants/api";
 import restClient from "../src/api/RestClient";
 import { setUser } from "../src/store/users/user.slice";
 import { setCategories } from "../src/store/categories/category.slice";
+import { setThings } from "../src/store/things/personalThings.slice";
+import ROLES from "../src/constants/roles";
 
-function Home() {
-  // const categories = useSelector(state => state.categories);
-  return <ThingsPage />;
+function Home({ things, role }) {
+  const stateThing = useSelector(state => state.personalThings);
+
+  return <ThingsPage things={role === ROLES.ADMIN ? stateThing : things} />;
 }
 
 export default withDefaultLayout(Home);
@@ -37,8 +40,15 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ctx 
     name: category.name,
   }));
 
-  store.dispatch(setCategories(categories));
+  const thingsRes = await restClient.get(
+    `${BACKEND_PATH}/things/all/${token.id}`,
+    token.accessToken
+  );
+  const things = await thingsRes.data;
 
+  store.dispatch(setCategories(categories));
   store.dispatch(setUser({ ...user }));
-  return { props: {} };
+  store.dispatch(setThings(things));
+
+  return { props: { things, role: token.role } };
 });

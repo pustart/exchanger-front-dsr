@@ -3,15 +3,44 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
+import { useSelector } from "react-redux";
+import { useSession } from "next-auth/react";
 import styles from "./OneThingPage.module.css";
 import Htag from "../../../elements/Htag/Htag";
 import Button from "../../../elements/Button/Button";
 import ROLES from "../../../../constants/roles";
 import Chip from "../../../elements/Chip/Chip";
+import { BACKEND_PATH } from "../../../../constants/api";
+import restClient from "../../../../api/RestClient";
 
-function OneThingPage({ id, userRole = ROLES.USER, thing }) {
-  const { name, description, address, photo, author, category, exchangeCategory } = thing;
+function OneThingPage({ thing }) {
+  const { data: session } = useSession();
+  const user = useSelector(state => state.user);
+  const {
+    id,
+    name,
+    description,
+    address,
+    photo,
+    author,
+    authorId,
+    phone,
+    category,
+    exchangeCategory,
+  } = thing;
   const router = useRouter();
+
+  const handleDelete = async thingId => {
+    try {
+      const res = await restClient.del(
+        `${BACKEND_PATH}/things/${thingId}`,
+        session.user.accessToken
+      );
+      router.back();
+    } catch (error) {
+      console.log("Ошибка удаления вещи:", error);
+    }
+  };
 
   return (
     <section className={styles["thing-container"]}>
@@ -28,26 +57,30 @@ function OneThingPage({ id, userRole = ROLES.USER, thing }) {
           <Htag tag="h2" fontWeight="bold" className={styles["thing-title"]}>
             {name}
           </Htag>
-          <IconButton aria-label="редактировать вещь" onClick={() => router.push("/")}>
-            <EditIcon />
-          </IconButton>
+          {authorId === user.id ? (
+            <IconButton aria-label="редактировать вещь" onClick={() => router.push("/")}>
+              <EditIcon />
+            </IconButton>
+          ) : null}
         </div>
         <div className={styles["btn-container"]}>
-          <Button round="rounded" appearance="contained">
-            Обменять
-          </Button>
-          <Button onClick={() => router.back()} round="rounded" appearance="outlined">
-            Назад
-          </Button>
-          {userRole === ROLES.ADMIN ? (
-            <Button round="rounded" appearance="delete">
+          {authorId === user.id ? null : (
+            <Button round="rounded" appearance="contained">
+              Обменять
+            </Button>
+          )}
+          {authorId === user.id || user.role === ROLES.ADMIN ? (
+            <Button round="rounded" appearance="delete" onClick={() => handleDelete(id)}>
               Удалить
             </Button>
           ) : null}
+          <Button onClick={() => router.back()} round="rounded" appearance="outlined">
+            Назад
+          </Button>
         </div>
         <div className={styles["info-block"]}>
           <div className={styles["info-title"]}>Контактный телефон</div>
-          <div>8-800-555-35-35</div>
+          <div>{phone}</div>
         </div>
         <div className={styles["info-block"]}>
           <div className={styles["info-title"]}>Категория для обмена</div>
@@ -60,10 +93,6 @@ function OneThingPage({ id, userRole = ROLES.USER, thing }) {
           <div>
             <Chip appearance="transparent" label={category} size="small" variant="outlined" />
           </div>
-        </div>
-        <div className={styles["info-block"]}>
-          <div className={styles["info-title"]}>E-mail</div>
-          <div>example@mail.com</div>
         </div>
         <div className={styles["info-block"]}>
           <div className={styles["info-title"]}>Адрес</div>

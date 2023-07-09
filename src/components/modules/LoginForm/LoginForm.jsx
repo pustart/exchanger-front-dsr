@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { React, useState } from "react";
 import cn from "classnames";
 import NextLink from "next/link";
@@ -24,7 +25,12 @@ function LoginForm({ className, title, ...props }) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    signIn("credentials", { callbackUrl: "/", email, password });
+    try {
+      signIn("credentials", { email, password });
+      router.push("/");
+    } catch (err) {
+      router.push("/login");
+    }
   };
 
   return (
@@ -37,6 +43,9 @@ function LoginForm({ className, title, ...props }) {
           Пожалуйста, войдите, используя реквизиты учетной записи
         </p>
         <div className={styles["input-wrapper"]}>
+          <label htmlFor="email" className={styles.label}>
+            E-mail:
+          </label>
           <Input
             value={email}
             placeholder="Введите ваш e-mail"
@@ -49,12 +58,17 @@ function LoginForm({ className, title, ...props }) {
           />
         </div>
         <div className={styles["input-wrapper"]}>
+          <label htmlFor="password" className={styles.label}>
+            Пароль:
+          </label>
           <Input
             value={password}
             placeholder="Введите ваш пароль"
             type="password"
             name="password"
             id="password"
+            minLength={6}
+            maxLength={16}
             required
             onChange={handleChangePassword}
             className={styles.input}

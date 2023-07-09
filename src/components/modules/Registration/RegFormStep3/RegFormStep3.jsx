@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { React, useState } from "react";
 import cn from "classnames";
 import NextLink from "next/link";
@@ -23,6 +24,7 @@ function RegFormStep3({ className, title, ...props }) {
   const { data: session } = useSession();
   const dispatch = useDispatch();
   const router = useRouter();
+  const [error, setError] = useState("");
 
   const email = useSelector(state => state.regForm.email);
   const password = useSelector(state => state.regForm.password);
@@ -58,6 +60,12 @@ function RegFormStep3({ className, title, ...props }) {
 
   const handleSubmit = async e => {
     e.preventDefault();
+
+    if (!password || !email || !name || !surname || !phone || !birthday) {
+      setError("Пожалуйста вернитесь назад и заполните все данные");
+      return;
+    }
+
     const usrData = {
       name: `${name} ${surname}`,
       password,
@@ -81,10 +89,14 @@ function RegFormStep3({ className, title, ...props }) {
         <Htag tag="h3" fontWeight="medium" className={styles["form-title"]}>
           Ура, вы почти у цели!
         </Htag>
+        {error && <p className={styles["error-message"]}>{error}</p>}
         <p className={cn(styles.paragraph, styles["form-description"])}>
           Проверьте правильность введенных данных
         </p>
         <div className={styles["input-wrapper"]}>
+          <label htmlFor="name" className={styles.label}>
+            Имя:
+          </label>
           <Input
             value={name}
             placeholder="Введите ваше имя"
@@ -92,11 +104,15 @@ function RegFormStep3({ className, title, ...props }) {
             name="name"
             id="name"
             required
+            readOnly
             onChange={handleChangeName}
             className={styles.input}
           />
         </div>
         <div className={styles["input-wrapper"]}>
+          <label htmlFor="surname" className={styles.label}>
+            Фамилия:
+          </label>
           <Input
             value={surname}
             placeholder="Введите вашу фамилию"
@@ -104,11 +120,15 @@ function RegFormStep3({ className, title, ...props }) {
             name="surname"
             id="surname"
             required
+            readOnly
             onChange={handleChangeSurname}
             className={styles.input}
           />
         </div>
         <div className={styles["input-wrapper"]}>
+          <label htmlFor="email" className={styles.label}>
+            E-mail:
+          </label>
           <Input
             value={email}
             placeholder="Введите ваш e-mail"
@@ -116,11 +136,15 @@ function RegFormStep3({ className, title, ...props }) {
             name="email"
             id="email"
             required
+            readOnly
             onChange={handleChangeEmail}
             className={styles.input}
           />
         </div>
         <div className={styles["input-wrapper"]}>
+          <label htmlFor="password" className={styles.label}>
+            Пароль:
+          </label>
           <Input
             value={password}
             placeholder="Введите ваш пароль"
@@ -128,22 +152,30 @@ function RegFormStep3({ className, title, ...props }) {
             name="password"
             id="password"
             required
+            readOnly
             onChange={handleChangePassword}
             className={styles.input}
           />
         </div>
         <div className={styles["input-wrapper"]}>
+          <label htmlFor="birthday" className={styles.label}>
+            Дата рождения:
+          </label>
           <Input
             value={birthday}
             type="date"
             placeholder="Выберете аватарку"
             name="birthday"
             id="birthday"
+            readOnly
             onChange={handleChangeBirthday}
             className={styles.input}
           />
         </div>
         <div className={styles["input-wrapper"]}>
+          <label htmlFor="birthday" className={styles.label}>
+            Номер телефона:
+          </label>
           <Input
             value={phone}
             pattern="^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$"
@@ -152,6 +184,7 @@ function RegFormStep3({ className, title, ...props }) {
             name="phone"
             id="phone"
             required
+            readOnly
             onChange={handleChangePhone}
             className={styles.input}
           />
@@ -159,12 +192,22 @@ function RegFormStep3({ className, title, ...props }) {
         <div className={styles["btn-container"]}>
           <Button
             round="squared"
+            appearance="outlined"
+            height="3rem"
+            type="button"
+            className={styles["back-btn"]}
+            onClick={() => router.back()}
+          >
+            Редактировать
+          </Button>
+          <Button
+            round="squared"
             appearance="contained"
             height="3rem"
             type="submit"
             className={styles["login-btn"]}
           >
-            Подтвердить и зарегестрироваться
+            Зарегестрироваться
           </Button>
         </div>
         <p className={cn(styles.paragraph, styles["link-wrapper"])}>

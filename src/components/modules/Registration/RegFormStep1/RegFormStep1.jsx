@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { React, useState } from "react";
 import cn from "classnames";
 import NextLink from "next/link";
@@ -14,6 +15,7 @@ function RegFormStep1({ className, title, ...props }) {
   const email = useSelector(state => state.regForm.email);
   const password = useSelector(state => state.regForm.password);
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [error, setError] = useState("");
 
   const router = useRouter();
 
@@ -31,6 +33,16 @@ function RegFormStep1({ className, title, ...props }) {
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    if (password !== passwordConfirm) {
+      setError("Пароль и подтверждение пароля не совпадают");
+      return;
+    }
+
+    if (password.length < 6) {
+      setError("Пароль должен содержать минимум 6 символов");
+      return;
+    }
     router.push("/registration/step2");
   };
 
@@ -40,10 +52,14 @@ function RegFormStep1({ className, title, ...props }) {
         <Htag tag="h3" fontWeight="medium" className={styles["form-title"]}>
           Шаг первый
         </Htag>
+        {error && <p className={styles["error-message"]}>{error}</p>}
         <p className={cn(styles.paragraph, styles["form-description"])}>
           Пожалуйста, заполните данную форму для регистрации
         </p>
         <div className={styles["input-wrapper"]}>
+          <label htmlFor="email" className={styles.label}>
+            E-mail:
+          </label>
           <Input
             value={email}
             placeholder="Введите ваш e-mail"
@@ -56,6 +72,9 @@ function RegFormStep1({ className, title, ...props }) {
           />
         </div>
         <div className={styles["input-wrapper"]}>
+          <label htmlFor="password" className={styles.label}>
+            Пароль:
+          </label>
           <Input
             value={password}
             placeholder="Введите ваш пароль"
@@ -63,11 +82,16 @@ function RegFormStep1({ className, title, ...props }) {
             name="password"
             id="password"
             required
+            minLength={6}
+            maxLength={16}
             onChange={handleChangePassword}
             className={styles.input}
           />
         </div>
         <div className={styles["input-wrapper"]}>
+          <label htmlFor="passwordConfirm" className={styles.label}>
+            Подтверждение пароля:
+          </label>
           <Input
             value={passwordConfirm}
             placeholder="Подтвердите ваш пароль"
@@ -75,21 +99,13 @@ function RegFormStep1({ className, title, ...props }) {
             name="passwordConfirm"
             id="passwordConfirm"
             required
+            minLength={6}
+            maxLength={16}
             onChange={handlePasswordConfirm}
             className={styles.input}
           />
         </div>
         <div className={styles["btn-container"]}>
-          <Button
-            round="squared"
-            appearance="outlined"
-            height="3rem"
-            type="button"
-            className={styles["back-btn"]}
-            onClick={() => router.back()}
-          >
-            Назад
-          </Button>
           <Button
             round="squared"
             appearance="contained"

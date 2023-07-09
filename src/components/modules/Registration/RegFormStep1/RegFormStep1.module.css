@@ -25,6 +25,18 @@
   box-shadow: 0 4px 28px -2px rgb(0 0 0 / 8%);
 }
 
+.error-message {
+  color: var(--critic-strong);
+}
+
+.label {
+  display: block;
+
+  margin: 0 0 0.5rem 0.5rem;
+
+  color: var(--faint-strong);
+}
+
 .paragraph {
   margin: 0;
 
@@ -35,7 +47,7 @@
 }
 
 .form-description {
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
 }
 
 .form-title {

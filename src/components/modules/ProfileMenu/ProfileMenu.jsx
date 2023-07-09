@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import cn from "classnames";
 import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import LinkState from "../../elements/LinkState/LinkState";
 import styles from "./ProfileMenu.module.css";
 import Htag from "../../elements/Htag/Htag";
 import ROLES from "../../../constants/roles";
 import dateParse from "../../../utils/dateParser";
+import { setUser } from "../../../store/users/user.slice";
 
 function ProfileMenu({ userRole = ROLES.ADMIN, className, ...props }) {
   const { data: session } = useSession();
   const user = useSelector(state => state.user);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setUser(user));
+  }, [user, dispatch]);
+
   const birthdayString = user.birthday;
   const formattedBirthday = dateParse(birthdayString);
 
@@ -37,7 +44,7 @@ function ProfileMenu({ userRole = ROLES.ADMIN, className, ...props }) {
       </div>
       <nav className={styles["menu-container"]}>
         <ul className={styles.list}>
-          {userRole === ROLES.USER ? (
+          {user.role === ROLES.USER ? (
             <li className={styles["list-item"]}>
               <LinkState className={styles.link} href="/profile" tabIndex="0">
                 Мои вещи

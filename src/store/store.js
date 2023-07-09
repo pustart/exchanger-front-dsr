@@ -10,12 +10,16 @@ import { allUsersReducer } from "./users/allUsers.slice";
 import { userReducer } from "./users/user.slice";
 import { filterReducer } from "./filter/filter.slice";
 import { regFormReducer } from "./regForm/regForm.slice";
+import { personalThingsReducer } from "./things/personalThings.slice";
+import { thingsApi } from "./things/things.api";
 
 const rootReducer = combineReducers({
   [categoryApi.reducerPath]: categoryApi.reducer,
   [registrationApi.reducerPath]: registrationApi.reducer,
   [userApi.reducerPath]: userApi.reducer,
+  [thingsApi.reducerPath]: thingsApi.reducer,
   categories: categoriesReducer,
+  personalThings: personalThingsReducer,
   allUsers: allUsersReducer,
   user: userReducer,
   filter: filterReducer,
@@ -29,7 +33,8 @@ export const makeStore = () =>
       getDefaultMiddleware().concat(
         categoryApi.middleware,
         registrationApi.middleware,
-        userApi.middleware
+        userApi.middleware,
+        thingsApi.middleware
       ),
   });
 

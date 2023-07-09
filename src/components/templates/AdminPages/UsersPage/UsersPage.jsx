@@ -5,7 +5,7 @@ import styles from "./UsersPage.module.css";
 import UserCard from "../../../elements/UserCard/UserCard";
 import { USERS } from "../../../../constants/mocks";
 
-function UsersPage({ users = USERS }) {
+function UsersPage({ users = USERS, pagination = true }) {
   const [animationParent] = useAutoAnimate();
 
   return (
@@ -17,7 +17,7 @@ function UsersPage({ users = USERS }) {
           </li>
         ))}
       </ul>
-      <Pagination count={5} />
+      {pagination ? <Pagination count={5} /> : null}
     </div>
   );
 }

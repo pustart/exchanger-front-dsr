@@ -23,6 +23,30 @@
   padding-bottom: 1.25rem;
 }
 
+.input-wrapper {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  display: block;
+
+  margin: 0 0 0.5rem 0.5rem;
+
+  color: var(--faint-strong);
+}
+
+.select {
+  width: 100%;
+  height: 3.375rem;
+  padding: 1rem;
+
+  color: var(--faint-strong);
+
+  border: 1.5px solid var(--faint-strong);
+  border-radius: var(--squared);
+}
+
 .thing-title {
   margin: 0;
 

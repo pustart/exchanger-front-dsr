@@ -8,8 +8,8 @@ import restClient from "../../../src/api/RestClient";
 import { BACKEND_PATH } from "../../../src/constants/api";
 import { setUser } from "../../../src/store/users/user.slice";
 
-function ThingId({ thing }) {
-  return <OneThingPage thing={thing} />;
+function ThingId({ thing, userThings }) {
+  return <OneThingPage thing={thing} userThings={userThings} />;
 }
 
 export default withDefaultLayout(ThingId);
@@ -39,11 +39,19 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ctx 
       },
     };
   }
+
+  const userThingRes = await restClient.get(
+    `${BACKEND_PATH}/things/findUserThings/${user.id}`,
+    token.accessToken
+  );
+
+  const userThings = await userThingRes.data;
   store.dispatch(setUser({ ...user }));
 
   return {
     props: {
       thing,
+      userThings,
     },
   };
 });

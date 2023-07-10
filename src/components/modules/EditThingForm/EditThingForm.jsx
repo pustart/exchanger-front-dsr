@@ -24,10 +24,12 @@ function EditThingForm({ className, thing, title, ...props }) {
   const [exchangeCategory, setExchangeCategory] = useState(thing.exchangeCategoryId);
   const [thingCategory, setThingCategory] = useState(thing.categoryId);
   const [photo, setPhoto] = useState(thing.photo);
+  const [isPhotoChanged, setIsPhotoChanged] = useState(false);
 
   const handlePhotoChange = e => {
     const selectedPhoto = e.target.files[0];
     setPhoto(selectedPhoto);
+    setIsPhotoChanged(true);
   };
 
   const handleChangeName = e => {
@@ -63,10 +65,10 @@ function EditThingForm({ className, thing, title, ...props }) {
       payload.append("authorId", session.user.id);
       payload.append("categoryId", thingCategory);
       payload.append("exchangeCategoryId", exchangeCategory);
-      if (photo) {
+      payload.append("photoUrl", thing.photo);
+
+      if (isPhotoChanged) {
         payload.append("photo", photo);
-      } else {
-        payload.append("photo", thing.photo);
       }
 
       const response = await axios.patch(`${BACKEND_PATH}/things/${thing.id}`, payload, {

@@ -1,5 +1,5 @@
 import React from "react";
-import MuiPagination from "@mui/material/Pagination"; // import styles from "./Link.module.css";
+import MuiPagination from "@mui/material/Pagination";
 import { styled } from "@mui/material/styles";
 import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";

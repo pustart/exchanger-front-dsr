@@ -5,10 +5,12 @@ import { Avatar } from "@mui/material";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
+import { useSelector } from "react-redux";
 import styles from "./Header.module.css";
 import Button from "../../elements/Button/Button";
 import Navigation from "../Navigation/Navigation";
 import ROLES from "../../../constants/roles";
+import { BACKEND_PATH } from "../../../constants/api";
 
 export function Header({ visible, className, userRole = ROLES.USER, ...props }) {
   const router = useRouter();
@@ -16,6 +18,7 @@ export function Header({ visible, className, userRole = ROLES.USER, ...props }) 
   if (session) {
     userRole = session.user.role;
   }
+  const user = useSelector(state => state.user);
 
   return (
     <header className={cn(className, styles.header)} {...props}>
@@ -23,7 +26,11 @@ export function Header({ visible, className, userRole = ROLES.USER, ...props }) 
         <Navigation logo userRole={userRole} />
         <div className={styles["actions-wrapper"]}>
           <NextLink href="/profile">
-            <Avatar src="/images/default-profile.webp" className={styles.avatar} />
+            <Avatar
+              alt=""
+              src={user.photo ? `${BACKEND_PATH}${user.photo}` : "/images/default-profile.webp"}
+              className={styles.avatar}
+            />
           </NextLink>
           {userRole === ROLES.ADMIN ? null : (
             <Button

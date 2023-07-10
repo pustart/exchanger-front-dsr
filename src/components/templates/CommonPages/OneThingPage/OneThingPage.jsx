@@ -45,7 +45,7 @@ function OneThingPage({ thing }) {
   return (
     <section className={styles["thing-container"]}>
       <Image
-        src={photo || "/images/placeholder.png"}
+        src={photo ? `${BACKEND_PATH}${photo}` : "/images/placeholder.png"}
         width={500}
         height={500}
         alt={name}
@@ -58,13 +58,16 @@ function OneThingPage({ thing }) {
             {name}
           </Htag>
           {authorId === user.id ? (
-            <IconButton aria-label="редактировать вещь" onClick={() => router.push("/")}>
+            <IconButton
+              aria-label="редактировать вещь"
+              onClick={() => router.push(`/things/edit/${id}`)}
+            >
               <EditIcon />
             </IconButton>
           ) : null}
         </div>
         <div className={styles["btn-container"]}>
-          {authorId === user.id ? null : (
+          {authorId === user.id || user.role === ROLES.ADMIN ? null : (
             <Button round="rounded" appearance="contained">
               Обменять
             </Button>

@@ -12,6 +12,7 @@ import Button from "../Button/Button";
 import ROLES from "../../../constants/roles";
 import { useDeleteThingMutation } from "../../../store/things/things.api";
 import { deleteThing } from "../../../store/things/personalThings.slice";
+import { BACKEND_PATH } from "../../../constants/api";
 
 function ThingCard({ thing }) {
   const { data: session } = useSession();
@@ -40,7 +41,7 @@ function ThingCard({ thing }) {
       <div>
         <Image
           priority
-          src={photo || "/images/placeholder.png"}
+          src={photo ? `${BACKEND_PATH}${photo}` : "/images/placeholder.png"}
           width={264}
           height={264}
           alt={name}

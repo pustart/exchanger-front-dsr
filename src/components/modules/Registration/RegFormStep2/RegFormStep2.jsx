@@ -22,9 +22,14 @@ function RegFormStep2({ className, title, ...props }) {
 
   const name = useSelector(state => state.regForm.name);
   const surname = useSelector(state => state.regForm.surname);
-  const avatar = useSelector(state => state.regForm.photo);
   const phone = useSelector(state => state.regForm.phone);
   const birthday = useSelector(state => state.regForm.birthday);
+  const photo = useSelector(state => state.regForm.photo);
+
+  const handlePhotoChange = e => {
+    const selectedPhoto = e.target.files[0];
+    dispatch(setPhoto(selectedPhoto));
+  };
 
   const handleChangeName = e => {
     dispatch(setName(e.target.value));
@@ -32,10 +37,6 @@ function RegFormStep2({ className, title, ...props }) {
 
   const handleChangeSurname = e => {
     dispatch(setSurname(e.target.value));
-  };
-
-  const handleChangeAvatar = e => {
-    dispatch(setPhoto(e.target.value));
   };
 
   const handleChangePhone = e => {
@@ -124,13 +125,12 @@ function RegFormStep2({ className, title, ...props }) {
             Фото профиля (опционально):
           </label>
           <Input
-            value={avatar}
             type="file"
             placeholder="Выберете аватарку"
-            accept="image/jpeg, image/png"
+            accept="image/jpeg, image/jpg, image/png"
             name="avatar"
             id="avatar"
-            onChange={handleChangeAvatar}
+            onChange={handlePhotoChange}
             className={styles.input}
           />
         </div>

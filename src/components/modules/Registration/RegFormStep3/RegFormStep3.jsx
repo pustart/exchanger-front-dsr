@@ -5,6 +5,7 @@ import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn, useSession } from "next-auth/react";
+import axios from "axios";
 import styles from "./RegFormStep3.module.css";
 import Htag from "../../../elements/Htag/Htag";
 import Input from "../../../elements/Input/Input";
@@ -66,18 +67,26 @@ function RegFormStep3({ className, title, ...props }) {
       return;
     }
 
-    const usrData = {
-      name: `${name} ${surname}`,
-      password,
-      email,
-      phone,
-      birthday,
-      photo: null,
-    };
-    const res = await restClient.post(`${BACKEND_PATH}/auth/registration`, usrData);
-    const data = await res.data;
+    const payload = new FormData();
+    payload.append("name", `${name} ${surname}`);
+    payload.append("password", password);
+    payload.append("email", email);
+    payload.append("phone", phone);
+    payload.append("birthday", birthday);
+    if (photo) {
+      payload.append("photo", photo);
+    }
+
+    const response = await axios.post(`${BACKEND_PATH}/auth/registration`, payload, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    const { data } = response;
     if (data) {
-      signIn("credentials", { callbackUrl: "/", email, password });
+      signIn("credentials", { email, password });
+      router.push("/");
     } else {
       router.push("/registration/step1");
     }

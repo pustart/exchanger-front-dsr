@@ -7,6 +7,7 @@ import { wrapper } from "../../src/store/store";
 import { BACKEND_PATH } from "../../src/constants/api";
 import restClient from "../../src/api/RestClient";
 import { setCategories } from "../../src/store/categories/category.slice";
+import { setUser } from "../../src/store/users/user.slice";
 
 function ThingAdd() {
   return <AddThingPage />;
@@ -41,6 +42,10 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ctx 
     name: category.name,
   }));
 
+  const usrRes = await restClient.get(`${BACKEND_PATH}/users/${token.id}`, token.accessToken);
+  const user = await usrRes.data;
+
+  store.dispatch(setUser({ ...user }));
   store.dispatch(setCategories(categories));
 
   return { props: {} };

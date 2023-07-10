@@ -8,6 +8,7 @@ import { BACKEND_PATH } from "../../src/constants/api";
 import { wrapper } from "../../src/store/store";
 import { setCategories } from "../../src/store/categories/category.slice";
 import ROLES from "../../src/constants/roles";
+import { setUser } from "../../src/store/users/user.slice";
 
 function Categories() {
   const categories = useSelector(state => state.categories);
@@ -43,6 +44,10 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ctx 
     thingsCount: category.thingsCount,
   }));
 
+  const usrRes = await restClient.get(`${BACKEND_PATH}/users/${token.id}`, token.accessToken);
+  const user = await usrRes.data;
+
+  store.dispatch(setUser({ ...user }));
   store.dispatch(setCategories(categories));
   return { props: {} };
 });

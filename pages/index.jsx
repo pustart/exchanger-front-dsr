@@ -40,15 +40,26 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ctx 
     name: category.name,
   }));
 
-  const thingsRes = await restClient.get(
-    `${BACKEND_PATH}/things/all/${token.id}`,
-    token.accessToken
-  );
-  const things = await thingsRes.data;
-
   store.dispatch(setCategories(categories));
   store.dispatch(setUser({ ...user }));
-  store.dispatch(setThings(things));
+
+  let things = [];
+
+  if (token.role === ROLES.ADMIN) {
+    const thingsRes = await restClient.get(
+      `${BACKEND_PATH}/things/all/${token.id}`,
+      token.accessToken
+    );
+    things = await thingsRes.data;
+    store.dispatch(setThings(things));
+  } else if (token.role === ROLES.USER) {
+    const thingsRes = await restClient.get(
+      `${BACKEND_PATH}/things/exchangeable/${token.id}`,
+      token.accessToken
+    );
+    things = await thingsRes.data;
+    store.dispatch(setThings(things));
+  }
 
   return { props: { things, role: token.role } };
 });

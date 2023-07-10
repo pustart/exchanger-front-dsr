@@ -27,6 +27,16 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ctx 
       },
     };
   }
+
+  if (token.role === ROLES.ADMIN) {
+    return {
+      redirect: {
+        destination: `/`,
+        permanent: false,
+      },
+    };
+  }
+
   const res = await restClient.get(`${BACKEND_PATH}/users/${token.id}`, token.accessToken);
   const user = await res.data;
   const thingRes = await restClient.get(`${BACKEND_PATH}/things/${id}`, token.accessToken);

@@ -8,7 +8,6 @@ import styles from "./ProfileSettings.module.css";
 import Htag from "../../elements/Htag/Htag";
 import Input from "../../elements/Input/Input";
 import Button from "../../elements/Button/Button";
-// import { useUpdateUsersMutation } from "../../../store/users/user.api";
 import { setUser } from "../../../store/users/user.slice";
 import { BACKEND_PATH } from "../../../constants/api";
 
@@ -17,15 +16,16 @@ function ProfileSettings({ className, ...props }) {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  // const [updateUsersMutation] = useUpdateUsersMutation();
   const usr = useSelector(state => state.user);
   const [email, setEmail] = useState(usr.email);
   const [phone, setPhone] = useState(usr.phone);
   const [name, setName] = useState(usr.name);
   const [avatar, setAvatar] = useState(usr.photo);
+  const [isAvatarChanged, setIsAvatarChanged] = useState(false);
 
   const handleAvatarChange = e => {
     const selectedPhoto = e.target.files[0];
+    setIsAvatarChanged(true);
     setAvatar(selectedPhoto);
   };
 
@@ -36,8 +36,9 @@ function ProfileSettings({ className, ...props }) {
       payload.append("name", name);
       payload.append("email", email);
       payload.append("phone", phone);
+      payload.append("photoUrl", usr.photo);
 
-      if (avatar) {
+      if (isAvatarChanged) {
         payload.append("photo", avatar);
       }
 

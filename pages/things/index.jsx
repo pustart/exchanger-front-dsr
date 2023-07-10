@@ -8,6 +8,7 @@ import restClient from "../../src/api/RestClient";
 import { BACKEND_PATH } from "../../src/constants/api";
 import { setUser } from "../../src/store/users/user.slice";
 import { setThings } from "../../src/store/things/personalThings.slice";
+import ROLES from "../../src/constants/roles";
 
 function Things() {
   const things = useSelector(state => state.personalThings);
@@ -29,16 +30,24 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ctx 
   }
 
   const res = await restClient.get(`${BACKEND_PATH}/users/${token.id}`, token.accessToken);
-  const thingsRes = await restClient.get(
-    `${BACKEND_PATH}/things/all/${token.id}`,
-    token.accessToken
-  );
-
   const user = await res.data;
-  const things = await thingsRes.data;
-
   store.dispatch(setUser({ ...user }));
-  store.dispatch(setThings(things));
+
+  if (token.role === ROLES.ADMIN) {
+    const thingsRes = await restClient.get(
+      `${BACKEND_PATH}/things/all/${token.id}`,
+      token.accessToken
+    );
+    const things = await thingsRes.data;
+    store.dispatch(setThings(things));
+  } else if (token.role === ROLES.USER) {
+    const thingsRes = await restClient.get(
+      `${BACKEND_PATH}/things/exchangeable/${token.id}`,
+      token.accessToken
+    );
+    const things = await thingsRes.data;
+    store.dispatch(setThings(things));
+  }
 
   return {
     redirect: {

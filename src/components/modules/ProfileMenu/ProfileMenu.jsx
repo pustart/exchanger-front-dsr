@@ -9,6 +9,7 @@ import Htag from "../../elements/Htag/Htag";
 import ROLES from "../../../constants/roles";
 import dateParse from "../../../utils/dateParser";
 import { setUser } from "../../../store/users/user.slice";
+import { BACKEND_PATH } from "../../../constants/api";
 
 function ProfileMenu({ userRole = ROLES.ADMIN, className, ...props }) {
   const { data: session } = useSession();
@@ -26,7 +27,7 @@ function ProfileMenu({ userRole = ROLES.ADMIN, className, ...props }) {
     <aside className={cn(styles["profile-container"], className)} {...props}>
       <Image
         priority
-        src="/images/default-profile.webp"
+        src={user.photo ? `${BACKEND_PATH}${user.photo}` : "/images/default-profile.webp"}
         width={240}
         height={240}
         alt="profile image"

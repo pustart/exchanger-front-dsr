@@ -3,38 +3,51 @@ import cn from "classnames";
 import { useSelector, useDispatch } from "react-redux";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import axios from "axios";
 import styles from "./ProfileSettings.module.css";
 import Htag from "../../elements/Htag/Htag";
 import Input from "../../elements/Input/Input";
 import Button from "../../elements/Button/Button";
-import { useUpdateUsersMutation } from "../../../store/users/user.api";
+// import { useUpdateUsersMutation } from "../../../store/users/user.api";
 import { setUser } from "../../../store/users/user.slice";
+import { BACKEND_PATH } from "../../../constants/api";
 
 function ProfileSettings({ className, ...props }) {
   const { data: session } = useSession();
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const [updateUsersMutation] = useUpdateUsersMutation();
+  // const [updateUsersMutation] = useUpdateUsersMutation();
   const usr = useSelector(state => state.user);
   const [email, setEmail] = useState(usr.email);
   const [phone, setPhone] = useState(usr.phone);
   const [name, setName] = useState(usr.name);
-  const [avatar, setAvatar] = useState(null);
+  const [avatar, setAvatar] = useState(usr.photo);
+
+  const handleAvatarChange = e => {
+    const selectedPhoto = e.target.files[0];
+    setAvatar(selectedPhoto);
+  };
 
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const payload = {
-        name,
-        email,
-        phone,
-      };
-      const response = await updateUsersMutation({
-        id: session.user.id,
-        updateUserDto: payload,
-        token: session.user.accessToken,
-      }).unwrap();
+      const payload = new FormData();
+      payload.append("name", name);
+      payload.append("email", email);
+      payload.append("phone", phone);
+
+      if (avatar) {
+        payload.append("photo", avatar);
+      }
+
+      const response = await axios.patch(`${BACKEND_PATH}/users/${session.user.id}`, payload, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${session.user.accessToken}`,
+        },
+      });
+
       dispatch(setUser(response.data));
       router.reload();
     } catch (error) {
@@ -110,12 +123,11 @@ function ProfileSettings({ className, ...props }) {
           Фото будет отображаться на вашем профиле и будет видно только вам.
         </p>
         <Input
-          value={avatar}
           type="file"
-          accept="image/jpeg, image/png"
+          accept="image/jpeg, image/jpeg, image/png"
           name="avatar"
           id="avatar"
-          onChange={e => setAvatar(e.target.value)}
+          onChange={handleAvatarChange}
           className={styles["setting-input"]}
         />
       </div>

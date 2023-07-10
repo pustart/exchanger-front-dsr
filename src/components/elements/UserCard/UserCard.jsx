@@ -10,6 +10,7 @@ import Button from "../Button/Button";
 import { deleteUser } from "../../../store/users/allUsers.slice";
 import { useDeleteUsersMutation } from "../../../store/users/user.api";
 import dateParse from "../../../utils/dateParser";
+import { BACKEND_PATH } from "../../../constants/api";
 
 function UserCard({ userInfo, className, ...props }) {
   const { data: session } = useSession();
@@ -32,7 +33,7 @@ function UserCard({ userInfo, className, ...props }) {
       <div className={styles["info-container"]}>
         <Avatar
           alt={[name, " ", surname]}
-          src={photo || "/images/default-profile.webp"}
+          src={photo ? `${BACKEND_PATH}${photo}` : "/images/default-profile.webp"}
           sx={{ width: 124, height: 124 }}
         />
         <div>

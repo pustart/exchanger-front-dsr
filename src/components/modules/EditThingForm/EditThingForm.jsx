@@ -7,23 +7,23 @@ import Select from "@mui/material/Select";
 import { useSelector } from "react-redux";
 import { useSession } from "next-auth/react";
 import axios from "axios";
-import styles from "./AddThingForm.module.css";
+import styles from "./EditThingForm.module.css";
 import Htag from "../../elements/Htag/Htag";
 import Input from "../../elements/Input/Input";
 import Button from "../../elements/Button/Button";
 import restClient from "../../../api/RestClient";
 import { BACKEND_PATH } from "../../../constants/api";
 
-function AddThingForm({ className, title, ...props }) {
+function EditThingForm({ className, thing, title, ...props }) {
   const { data: session } = useSession();
   const router = useRouter();
-  const [name, setName] = useState("");
-  const [address, setAddress] = useState("");
-  const [description, setDescription] = useState("");
+  const [name, setName] = useState(thing.name);
+  const [address, setAddress] = useState(thing.address);
+  const [description, setDescription] = useState(thing.description);
   const categories = useSelector(state => state.categories);
-  const [exchangeCategory, setExchangeCategory] = useState("");
-  const [thingCategory, setThingCategory] = useState("");
-  const [photo, setPhoto] = useState(null);
+  const [exchangeCategory, setExchangeCategory] = useState(thing.exchangeCategoryId);
+  const [thingCategory, setThingCategory] = useState(thing.categoryId);
+  const [photo, setPhoto] = useState(thing.photo);
 
   const handlePhotoChange = e => {
     const selectedPhoto = e.target.files[0];
@@ -54,19 +54,22 @@ function AddThingForm({ className, title, ...props }) {
 
   const handleSubmit = async e => {
     e.preventDefault();
+
     try {
       const payload = new FormData();
       payload.append("name", name);
-      payload.append("address", address);
       payload.append("description", description);
+      payload.append("address", address);
       payload.append("authorId", session.user.id);
       payload.append("categoryId", thingCategory);
       payload.append("exchangeCategoryId", exchangeCategory);
       if (photo) {
         payload.append("photo", photo);
+      } else {
+        payload.append("photo", thing.photo);
       }
 
-      const response = await axios.post(`${BACKEND_PATH}/things`, payload, {
+      const response = await axios.patch(`${BACKEND_PATH}/things/${thing.id}`, payload, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${session.user.accessToken}`,
@@ -76,7 +79,7 @@ function AddThingForm({ className, title, ...props }) {
       const { data } = response;
       router.push("/profile");
     } catch (error) {
-      console.log("Ошибка при добавлении вещи:", error);
+      console.log("Ошибка при редактировании вещи:", error);
     }
   };
 
@@ -87,7 +90,7 @@ function AddThingForm({ className, title, ...props }) {
           Описание вещи
         </Htag>
         <p className={cn(styles.paragraph, styles["form-description"])}>
-          Заполните все поля, чтобы успешно опубликовать вашу вещь
+          Здесь вы можете редактировать информацию о своей вещи
         </p>
         <div className={styles["input-wrapper"]}>
           <label htmlFor="name" className={styles.label}>
@@ -216,7 +219,7 @@ function AddThingForm({ className, title, ...props }) {
             type="submit"
             className={styles["login-btn"]}
           >
-            Опубликовать
+            Подтвердить
           </Button>
         </div>
       </form>
@@ -224,4 +227,4 @@ function AddThingForm({ className, title, ...props }) {
   );
 }
 
-export default AddThingForm;
+export default EditThingForm;

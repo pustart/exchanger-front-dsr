@@ -38,13 +38,7 @@ const regFormSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    builder.addCase(
-      HYDRATE,
-      (state, action) =>
-        // Обработка гидратации
-        // Установка состояния стора на основе переданных данных
-        action.payload.regForm || state
-    );
+    builder.addCase(HYDRATE, (state, action) => action.payload.regForm || state);
   },
 });
 

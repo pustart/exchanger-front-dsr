@@ -9,13 +9,7 @@ const userSlice = createSlice({
     setUser: (state, action) => action.payload,
   },
   extraReducers: builder => {
-    builder.addCase(
-      HYDRATE,
-      (state, action) =>
-        // Обработка гидратации
-        // Установка состояния стора на основе переданных данных
-        action.payload.user || state
-    );
+    builder.addCase(HYDRATE, (state, action) => action.payload.user || state);
   },
 });
 

@@ -16,3 +16,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 1.25rem;
 }
+
+.placeholder {
+  color: var(--faint-strong);
+}

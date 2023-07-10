@@ -4,3 +4,12 @@
 
   list-style: none;
 }
+
+.placeholder {
+  width: 100%;
+  margin-top: 3rem;
+
+  text-align: center;
+
+  color: var(--faint-strong);
+}
